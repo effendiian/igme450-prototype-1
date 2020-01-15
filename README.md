@@ -30,8 +30,8 @@ You'll be able to build the game locally from there. We do not have any builds a
 
 ### Branching ###
 
-[A recommended guide can be found here](https://gist.github.com/digitaljhelms/4287848).
+[A recommended guide can be found here](https://gist.github.com/rimij405/ba15798fb4b655210ec6ca109490537d).
 
 ## License ##
 
-This project is licensed under the MIT license. Read the LICENSE file for more details.
+This project is licensed under the MIT license. Read the [LICENSE file](./LICENSE) for more details.
