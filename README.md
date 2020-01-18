@@ -10,7 +10,6 @@ This repository is a work-in-progress.
 
 Team Monster Hunter Odyssey
 
-- Cole Boggan (@coletrain9903)
 - Steven Domitrz (@stevenfd)
 - Ian Effendi (@rimij405)
 - Mitch Heard (@mwh2719)
