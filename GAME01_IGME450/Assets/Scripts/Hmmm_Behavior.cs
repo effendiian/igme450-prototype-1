@@ -2,20 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hmmbehavior : MonoBehaviour
+public class Hmmm_Behavior : MonoBehaviour
 {
-
-    private GameObject audioClip;   //Reference to the game objecct holding the hmm audio clip
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+
+    //function to be called when the button is clicked
+    void onClick()
+    {
+
     }
 }
