@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlainStyle : Style
+public class PlainStyle : MonoBehaviour, Style
 {
     public Sprite squareSprite;
 
@@ -10,7 +10,7 @@ public class PlainStyle : Style
         this.squareSprite = squareSprite;
     }
 
-    public GameObject CreatePainting(float size, float width)
+    public GameObject CreatePainting(float xScale, float yScale)
     {
         GameObject painting = new GameObject();
         painting.SetActive(false);
@@ -19,7 +19,7 @@ public class PlainStyle : Style
         rend.sprite = squareSprite;
         rend.color = Random.ColorHSV();
         painting.transform.position = painting.transform.position + new Vector3(0, 3, 0);
-        painting.transform.localScale = new Vector3(size, width, 1);
+        painting.transform.localScale = new Vector3(xScale, yScale, 1);
 
         return painting;
     }

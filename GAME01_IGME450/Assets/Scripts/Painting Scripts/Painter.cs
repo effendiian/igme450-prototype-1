@@ -2,51 +2,105 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using System.Linq;
 
 public class Painter : MonoBehaviour
 {
-    public Sprite square;
     GameObject painting;
-
+    
+    public List<GameObject> painters = new List<GameObject>();
     List<Style> styles = new List<Style>();
+
+    public int minX = 2;
+    public int maxX = 18;
+    public int minY = 2;
+    public int maxY = 7;
+
     List<int> probabilities = new List<int>();
     List<int> probabilityChecks = new List<int>();
 
     // Start is called before the first frame update
+    //Grab all the painters assigned to the Painting to create probabilities
     void Start()
     {
-        styles.Add(new PlainStyle(square));
-        probabilities.Add(1);
+        foreach (var painter in this.painters)
+        {
+            styles.Add((Style)painter.GetComponent(typeof(Style)));
+            probabilities.Add(1);
+        }
 
         GenerateProbabilityChecks();
 
-        InvokeRepeating("GenerateNextPainting", 0, 3);
+        InvokeRepeating("ShowNextPainting", 0, 3);
     }
 
+    //Nothing to update right now
     // Update is called once per frame
-    void Update()
-    {
+    //void Update()
+    //{
         
-    }
+    //}
 
-    private void GenerateNextPainting()
+    //May not use in the future if we want to generate and hold a list of paintings, see methods below
+    //Destroy the current painting and generate a new one to view
+    public void ShowNextPainting()
     {
         Destroy(painting);
-        float width = Random.Range(2, 18);
-        float height = Random.Range(2, 8);
+        painting = GeneratePainting();
+        painting.SetActive(true);
+    }
+
+    //Generate and return a list of paintings - not active
+    public IList<GameObject> GeneratePaintings(int num)
+    {
+        List<GameObject> paintings = new List<GameObject>();
+        for (int i = 0; i < num; i++)
+        {
+            paintings.Add(GeneratePainting());
+        }
+        return paintings;
+    }
+
+    //Generate and return a single painting - not active
+    private GameObject GeneratePainting()
+    {
+        float width = Random.Range(minX, maxX);
+        float height = Random.Range(minY, maxY);
 
         int style = Random.Range(0, probabilityChecks[probabilityChecks.Count - 1]);
         for (int i = 0; i < probabilityChecks.Count; i++)
         {
             if (style <= probabilityChecks[i])
             {
-                Debug.Log("drawing");
-                painting = styles[i].CreatePainting(width, height);
-                painting.SetActive(true);
+                return styles[i].CreatePainting(width, height);
             }
         }
+
+        return null;
     }
 
+    //Change painters with all having same probabilities
+    public void SetPainters(List<GameObject> painters)
+    {
+        SetPainters(painters, Enumerable.Repeat(1, painters.Count).ToList());
+    }
+
+    //Allows us to change Painters/Styles on the fly
+    public void SetPainters(List<GameObject> painters, List<int> probabilities)
+    {
+        //Might not want to do this if we keep centralized painters
+        foreach (var painter in this.painters)
+        {
+            Destroy(painter);
+        }
+
+        this.painters = painters;
+        this.probabilities = probabilities;
+
+        GenerateProbabilityChecks();
+    }
+
+    //Generate numbers to check for style so it's easier to do it every time we make them
     private void GenerateProbabilityChecks()
     {
         probabilityChecks.Add(probabilities[0]);

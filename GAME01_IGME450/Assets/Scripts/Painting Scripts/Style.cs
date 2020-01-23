@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface Style
 {
-    GameObject CreatePainting(float size, float width);
+    GameObject CreatePainting(float xScale, float yScale);
 }
