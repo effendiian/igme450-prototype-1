@@ -9,14 +9,14 @@ public class Painter : MonoBehaviour
     GameObject painting;
     
     public List<GameObject> painters = new List<GameObject>();
+    public List<int> probabilities = new List<int>();
     List<Style> styles = new List<Style>();
 
     public int minX = 2;
     public int maxX = 18;
     public int minY = 2;
     public int maxY = 7;
-
-    List<int> probabilities = new List<int>();
+    
     List<int> probabilityChecks = new List<int>();
 
     // Start is called before the first frame update
@@ -26,7 +26,6 @@ public class Painter : MonoBehaviour
         foreach (var painter in this.painters)
         {
             styles.Add((Style)painter.GetComponent(typeof(Style)));
-            probabilities.Add(1);
         }
 
         GenerateProbabilityChecks();
