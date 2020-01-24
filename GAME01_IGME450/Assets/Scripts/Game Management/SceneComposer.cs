@@ -23,15 +23,16 @@ public class SceneComposer : MonoBehaviour
     /// <summary>
     /// On Awake, assign the loader.
     /// </summary>
-    public void Awake()
+    public virtual void Awake()
     {
-        this.loader = this.loader ?? gameObject.GetComponent<AdditiveSceneLoader>();
         if (persist) { DontDestroyOnLoad(this); }
+        this.loader = this.loader ?? gameObject.GetComponent<AdditiveSceneLoader>();
+        this.loader.Setup();
     }
-
+    
     /// <summary>
-    /// On Start, execute the loader.
+    /// Quit the game (through the Game manager).
     /// </summary>
-    public void Start() => this.loader.Setup();
+    public void Quit() => Game.Instance.Quit();
 
 }

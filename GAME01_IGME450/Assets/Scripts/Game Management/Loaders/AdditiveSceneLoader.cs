@@ -77,21 +77,29 @@ public class AdditiveSceneLoader : MonoBehaviour, IGameLoader
     {
         Debug.Log($"Additively loading [Scene {this._sceneName}]...");
 
-        // Loading the scene additively.
-        AsyncOperation ao = SceneManager.LoadSceneAsync(this._sceneName, LoadSceneMode.Additive);
-        ao.allowSceneActivation = false;
-
-        while (!ao.isDone)
+        // Check if scene is already loaded.
+        if (!Game.IsSceneLoaded(this._sceneName))
         {
-            Debug.Log($"Loading [Scene {this._sceneName}] progress: {ao.progress * 100}%");
-            if (ao.progress >= 0.9f)
+            // Loading the scene additively.
+            AsyncOperation ao = SceneManager.LoadSceneAsync(this._sceneName, LoadSceneMode.Additive);
+            ao.allowSceneActivation = false;
+
+            while (!ao.isDone)
             {
-                // Activate the scene.
-                ao.allowSceneActivation = true;
+                Debug.Log($"Loading [Scene {this._sceneName}] progress: {ao.progress * 100}%");
+                if (ao.progress >= 0.9f)
+                {
+                    // Activate the scene.
+                    ao.allowSceneActivation = true;
+                }
+                yield return null;
             }
-            yield return null;
         }
-        
+        else
+        {
+            Debug.Log($"[Scene {this._sceneName}] already loaded!");
+        }
+
         // Merge scenes if necessary.
         if (this._mergeScene)
         {

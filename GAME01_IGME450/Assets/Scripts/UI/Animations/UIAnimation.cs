@@ -247,7 +247,7 @@ public class UIAnimation : MonoBehaviour, IUIAnimation
         this.SetProperty(this._endValue);
         this.OnEnd.Invoke();
     }
-
+    
     /// <summary>
     /// Set the current property value.
     /// </summary>

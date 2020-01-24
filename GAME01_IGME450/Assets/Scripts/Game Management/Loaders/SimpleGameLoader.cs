@@ -14,10 +14,16 @@ public class SimpleGameLoader : MonoBehaviour, IGameLoader
     #region Data Members
 
     /// <summary>
+    /// Data settings.
+    /// </summary>
+    [SerializeField]
+    private ApplicationData _data;
+
+    /// <summary>
     /// Class settings.
     /// </summary>
     [SerializeField]
-    private GameLoaderData _settings = Game.Instance.DefaultSettings.gameLoaderData;
+    private GameLoaderData _settings;
 
     /// <summary>
     /// Property reference for <see cref="debug"/>.
@@ -40,6 +46,11 @@ public class SimpleGameLoader : MonoBehaviour, IGameLoader
     #endregion
 
     #region Service Methods
+
+    public void Start()
+    {
+        this._settings = this._data.gameLoaderData;
+    }
 
     /// <summary>
     /// Setup the game.

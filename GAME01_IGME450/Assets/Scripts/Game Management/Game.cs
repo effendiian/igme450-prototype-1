@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using NaughtyAttributes;
 
 /***
@@ -24,23 +25,53 @@ public class Game : MonoBehaviour
     /// <summary>
     /// Singleton reference to <see cref="Game"/> class.
     /// </summary>
-    public static Game Instance => Game._instance;
+    public static Game Instance
+    {
+        get
+        {
+            if(Game._instance == null)
+            {
+                GameObject go = new GameObject("Game Manager");
+                Game._instance = go.AddComponent<Game>();
+            }
+
+            return Game._instance;
+        }
+    }
+
+    /// <summary>
+    /// Check if scene of a particular name is currently loaded.
+    /// </summary>
+    /// <param name="sceneName">Name of scene to check.</param>
+    /// <returns>Returns true if found.</returns>
+    public static bool IsSceneLoaded(string sceneName)
+    {
+#if UNITY_EDITOR
+        for(int i=0; i < UnityEditor.SceneManagement.EditorSceneManager.loadedSceneCount; ++i)
+        {
+            var scene = UnityEditor.SceneManagement.EditorSceneManager.GetSceneAt(i);
+            if(scene.name == sceneName)
+            {
+                return true;
+            }
+        }
+#else     
+        for(int i=0; i < SceneManager.sceneCount; ++i)
+        {
+            Scene scene = SceneManager.GetSceneAt(i);
+            if(scene.name == sceneName)
+            {
+                return true;
+            }
+        }
+#endif
+        return false;
+    }
 
     #endregion
 
     #region Data Members
 
-    /// <summary>
-    /// ApplicationData reference.
-    /// </summary>
-    [SerializeField, Label("Default Application Data"), Tooltip("Application Data asset reference.")]
-    private ApplicationData _applicationData;
-
-    /// <summary>
-    /// Property reference to the application data.
-    /// </summary>
-    public ApplicationData DefaultSettings => _applicationData ?? (_applicationData = ScriptableObject.CreateInstance<ApplicationData>());
-    
     /// <summary>
     /// Loader for the game.
     /// </summary>
@@ -50,13 +81,15 @@ public class Game : MonoBehaviour
     /// <summary>
     /// Reference to the Game Loader.
     /// </summary>
-    public IGameLoader Loader => _loader ?? (_loader = gameObject.AddComponent<SimpleGameLoader>());
+    public IGameLoader Loader => _loader ?? (_loader = gameObject.GetComponent<AdditiveSceneLoader>());
 
-    #endregion
+#endregion
 
     #region MonoBehaviours
 
-    // Don't destroy this on load and ensure there is only one instance.
+    /// <summary>
+    /// Don't destroy this on load and ensure there is only one instance.
+    /// </summary>
     protected virtual void Awake()
     {
         // Determine if this Singleton has already been initialized.
@@ -74,13 +107,35 @@ public class Game : MonoBehaviour
             DontDestroyOnLoad(this);
 
             // Setup the game using the loader.
-            this.Loader.Setup();
-
-            // Call the loader coroutine.
-            this.StartCoroutine(this.Loader.LoadProcess());
+            this.Loader.Setup();            
         }
     }
 
-    #endregion
-    
+    /// <summary>
+    /// On application exit, perform the following.
+    /// </summary>
+    public void OnApplicationQuit()
+    {
+        Debug.Log("Exiting the application.");
+        Destroy(this);
+    }
+
+#endregion
+
+    #region Service Methods
+
+    /// <summary>
+    /// Quit the Application.
+    /// </summary>
+    public void Quit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+
+#endregion
+
 }

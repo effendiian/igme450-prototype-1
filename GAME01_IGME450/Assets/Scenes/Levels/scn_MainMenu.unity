@@ -242,13 +242,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116011010}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c2c839eed8bed419766eb36c3a0474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneName: scn_MainMenuUI
-  _mergeScene: 1
+  _sceneName: 
+  _mergeScene: 0
   OnError:
     m_PersistentCalls:
       m_Calls: []
@@ -267,4 +267,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7aeffaea77b06741a529815819adf55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loader: {fileID: 0}
+  loader: {fileID: 116011012}
+  persist: 0

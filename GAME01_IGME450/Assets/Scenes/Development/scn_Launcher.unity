@@ -130,6 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1494685441}
   - component: {fileID: 1494685442}
+  - component: {fileID: 1494685443}
   m_Layer: 0
   m_Name: Application
   m_TagString: Untagged
@@ -163,4 +164,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e5f2150fc2f56442af7604e4e4daaf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _applicationData: {fileID: 11400000, guid: 4a9167f9c54facc4c876d9943f60a237, type: 2}
+--- !u!114 &1494685443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494685440}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c2c839eed8bed419766eb36c3a0474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneName: scn_MainMenu
+  _mergeScene: 1
+  OnError:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLoaded:
+    m_PersistentCalls:
+      m_Calls: []
