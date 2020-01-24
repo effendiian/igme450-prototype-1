@@ -59,7 +59,7 @@ public class SimpleGameLoader : MonoBehaviour, IGameLoader
     /// </summary>
     /// <returns>Coroutine process.</returns>
     public IEnumerator LoadProcess()
-    {
+    { 
         if (this.ShowDebugMessages)
         {
             Debug.Log($"Loading [Scene {this.SceneName}]...");
