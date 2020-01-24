@@ -23,8 +23,15 @@ public class MainMenuController : MonoBehaviour
     /// <summary>
     /// Start the game.
     /// </summary>
-    public void StartGame() => throw new System.NotImplementedException();
+    public void StartGame()
+    {
+        // Pop the main menu state.
+        Game.Instance.GameStateManager.PopState();
 
+        // Load up the next scene.
+        Game.Instance.LoadScene("Game", UnityEngine.SceneManagement.LoadSceneMode.Single);
+    } 
+       
     /// <summary>
     /// Display the instructions.
     /// </summary>

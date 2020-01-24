@@ -8,19 +8,15 @@ using NaughtyAttributes;
 /// </summary>
 public class StateManager : MonoBehaviour
 {
-
-    #region Fields
+       
+    #region Data Members
 
     /// <summary>
     /// Stack of GameState objects.
     /// </summary>
     [SerializeField, ReadOnly, Label("States"), Tooltip("Collection of game states managed by this state manager.")]
     private Stack<GameState> _states;
-
-    #endregion
-
-    #region Properties
-
+    
     /// <summary>
     /// Readonly reference to the stack of game states.
     /// </summary>
@@ -38,7 +34,7 @@ public class StateManager : MonoBehaviour
 
     #endregion
 
-    #region MonoBehaviours
+    #region MonoBehaviour Methods
     
     /// <summary>
     /// OnAwake, initialize the state collection.

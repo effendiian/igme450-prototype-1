@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UI/scn_InstructionsUI.unity
     guid: a1f9d928e70234049bd9bef852a4e937
+  - enabled: 1
+    path: Assets/Scenes/Development/scn_LikeButtonPrototype.unity
+    guid: 98596a4a37e50ca46bdfaea7cb21bc84
   m_configObjects: {}

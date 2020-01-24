@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿using System.Collections;
+
+/// <summary>
 /// ICommand interface. Implemented by other Command objects.
 /// Based off of design pattern: https://refactoring.guru/design-patterns/command/csharp/example
 /// </summary>
@@ -10,5 +12,5 @@ public interface ICommand
     /// <summary>
     /// Execute the command.
     /// </summary>
-    void Execute();
+    IEnumerator Run();
 }

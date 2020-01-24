@@ -9,7 +9,7 @@ using NaughtyAttributes;
 public class GameState : MonoBehaviour
 {
 
-    #region Fields
+    #region Data Member
 
     /// <summary>
     /// State manager.
@@ -29,10 +29,6 @@ public class GameState : MonoBehaviour
     [SerializeField, Label("Debug Mode?"), Tooltip("Print debug messages.")]
     private bool m_debug = false;
     
-    #endregion
-
-    #region Properties
-
     /// <summary>
     /// Check if the state is paused.
     /// </summary>
@@ -45,7 +41,7 @@ public class GameState : MonoBehaviour
 
     #endregion
 
-    #region MonoBehaviours
+    #region MonoBehaviour Methods
 
     /// <summary>
     /// Update the game state.

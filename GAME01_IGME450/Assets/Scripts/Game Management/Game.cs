@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using NaughtyAttributes;
 
@@ -73,17 +75,21 @@ public class Game : MonoBehaviour
     #region Data Members
 
     /// <summary>
-    /// Loader for the game.
+    /// Map of scene names.
     /// </summary>
-    [SerializeField, ReadOnly, Label("Game Loader"), Tooltip("Game Loader behaviour.")]
-    private IGameLoader _loader;
+    private Dictionary<string, string> _scenes;
 
     /// <summary>
-    /// Reference to the Game Loader.
+    /// Global level state manager.
     /// </summary>
-    public IGameLoader Loader => _loader ?? (_loader = gameObject.GetComponent<AdditiveSceneLoader>());
+    private StateManager _globalStateManager;
 
-#endregion
+    /// <summary>
+    /// Global State Manager.
+    /// </summary>
+    public StateManager GameStateManager => this._globalStateManager;
+
+    #endregion
 
     #region MonoBehaviours
 
@@ -106,8 +112,11 @@ public class Game : MonoBehaviour
             // For the Game controller, ensure it is persistent between scenes.
             DontDestroyOnLoad(this);
 
-            // Setup the game using the loader.
-            this.Loader.Setup();            
+            // Create collection for scenes.
+            this.Setup();
+
+            // Load a scene.
+            this.LoadScene("Main Menu", LoadSceneMode.Single);
         }
     }
 
@@ -120,9 +129,41 @@ public class Game : MonoBehaviour
         Destroy(this);
     }
 
-#endregion
+    #endregion
 
     #region Service Methods
+
+    /// <summary>
+    /// Setup the Game (and its map key).
+    /// </summary>
+    public void Setup()
+    {
+        // Setup Scene map.
+        this._scenes = this._scenes ?? new Dictionary<string, string>();
+        this._scenes.Add("Game", "scn_LikeButtonPrototype");
+        this._scenes.Add("Main Menu", "scn_MainMenu");
+        this._scenes.Add("Main Menu UI", "scn_MainMenuUI");
+        this._scenes.Add("Instructions UI", "scn_InstructionsUI");
+
+        // Setup state manager.
+        this._globalStateManager = this._globalStateManager ?? gameObject.AddComponent<StateManager>();
+
+        // Setup scene loader.
+        this.gameObject.AddComponent<SceneLoader>();
+    }
+
+    /// <summary>
+    /// Load Scene by mapped ID key.
+    /// </summary>
+    /// <param name="id">ID key mapped to a scene name.</param>
+    /// <param name="mode">Mode to load scene with.</param>
+    public void LoadScene(string id, LoadSceneMode mode = LoadSceneMode.Additive)
+    {
+        if (this._scenes.ContainsKey(id))
+        {
+            this.StartCoroutine(SceneLoader.Instance.LoadSceneAsync(this._scenes[id], mode));
+        }
+    }
 
     /// <summary>
     /// Quit the Application.
@@ -136,6 +177,6 @@ public class Game : MonoBehaviour
 #endif
     }
 
-#endregion
+    #endregion
 
 }
