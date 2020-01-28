@@ -4,23 +4,21 @@ using UnityEngine;
 
 public class Artist
 {
-    private Sprite squareSprite;
+    private GameObject paintingPrefab;
 
-    public Artist(Sprite squareSprite)
+    public Artist(GameObject paintingPrefab)
     {
-        this.squareSprite = squareSprite;
+        this.paintingPrefab = paintingPrefab;
     }
 
     public GameObject GeneratePainting(ColorTrait color, FormatTrait format)
     {
         //Create and disable the painting
-        GameObject painting = new GameObject();
+        GameObject painting = Object.Instantiate(paintingPrefab);
         painting.transform.position = painting.transform.position + new Vector3(0, 3, 0);
-        painting.SetActive(false);
 
-        //Create the sprite renderer and assign it
-        SpriteRenderer rend = painting.AddComponent(typeof(SpriteRenderer)) as SpriteRenderer;
-        rend.sprite = squareSprite;
+        //Get the sprite renerer so we can use it
+        SpriteRenderer rend = painting.GetComponent(typeof(SpriteRenderer)) as SpriteRenderer;
 
         
         rend.color = color.GetColor();

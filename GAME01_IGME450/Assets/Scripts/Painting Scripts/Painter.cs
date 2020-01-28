@@ -7,6 +7,7 @@ using System.Linq;
 public class Painter : MonoBehaviour
 {
     GameObject painting;
+    public GameObject paintingPrefab;
     public Sprite squareSprite;
     
     public List<ColorTrait> colorTraits = new List<ColorTrait>();
@@ -25,7 +26,7 @@ public class Painter : MonoBehaviour
     //Grab all the painters assigned to the Painting to create probabilities
     void Start()
     {
-        artist = new Artist(squareSprite);
+        artist = new Artist(paintingPrefab);
 
         InvokeRepeating("ShowNextPainting", 0, 3);
     }
