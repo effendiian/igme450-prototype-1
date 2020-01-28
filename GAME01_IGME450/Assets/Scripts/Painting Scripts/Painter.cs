@@ -9,11 +9,8 @@ public class Painter : MonoBehaviour
     GameObject painting;
     public Sprite squareSprite;
     
-    public List<GameObject> painters = new List<GameObject>();
     public List<ColorTrait> colorTraits = new List<ColorTrait>();
     public List<FormatTrait> formatTraits = new List<FormatTrait>();
-    public List<int> probabilities = new List<int>();
-    List<Style> styles = new List<Style>();
 
     Artist artist;
 
@@ -28,13 +25,6 @@ public class Painter : MonoBehaviour
     //Grab all the painters assigned to the Painting to create probabilities
     void Start()
     {
-        foreach (var painter in this.painters)
-        {
-            styles.Add((Style)painter.GetComponent(typeof(Style)));
-        }
-
-        GenerateProbabilityChecks();
-
         artist = new Artist(squareSprite);
 
         InvokeRepeating("ShowNextPainting", 0, 3);
@@ -70,55 +60,6 @@ public class Painter : MonoBehaviour
     //Generate and return a single painting - not active
     private GameObject GeneratePainting()
     {
-
         return artist.GeneratePainting(colorTraits[Random.Range(0, colorTraits.Count)], formatTraits[Random.Range(0, formatTraits.Count)]);
-
-        float width = Random.Range(minX, maxX);
-        float height = Random.Range(minY, maxY);
-
-        int style = Random.Range(0, probabilityChecks[probabilityChecks.Count - 1]);
-        for (int i = 0; i < probabilityChecks.Count; i++)
-        {
-            if (style <= probabilityChecks[i])
-            {
-                return styles[i].CreatePainting(width, height);
-            }
-        }
-
-        return null;
-    }
-
-    //Change painters with all having same probabilities
-    public void SetPainters(List<GameObject> painters)
-    {
-        SetPainters(painters, Enumerable.Repeat(1, painters.Count).ToList());
-    }
-
-    //Allows us to change Painters/Styles on the fly
-    public void SetPainters(List<GameObject> painters, List<int> probabilities)
-    {
-        //Might not want to do this if we keep centralized painters
-        foreach (var painter in this.painters)
-        {
-            Destroy(painter);
-        }
-
-        this.painters = painters;
-        this.probabilities = probabilities;
-
-        GenerateProbabilityChecks();
-    }
-
-    //Generate numbers to check for style so it's easier to do it every time we make them
-    private void GenerateProbabilityChecks()
-    {
-        probabilityChecks.Add(probabilities[0]);
-        if (probabilities.Count == 1)
-            return;
-
-        for (int i = 1; i < probabilities.Count; i++)
-        {
-            probabilityChecks.Add(probabilityChecks[i - 1] + probabilities[i]);
-        }
     }
 }
