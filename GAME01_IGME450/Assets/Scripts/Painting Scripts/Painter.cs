@@ -7,10 +7,15 @@ using System.Linq;
 public class Painter : MonoBehaviour
 {
     GameObject painting;
+    public Sprite squareSprite;
     
     public List<GameObject> painters = new List<GameObject>();
+    public List<ColorTrait> colorTraits = new List<ColorTrait>();
+    public List<FormatTrait> formatTraits = new List<FormatTrait>();
     public List<int> probabilities = new List<int>();
     List<Style> styles = new List<Style>();
+
+    Artist artist;
 
     public int minX = 2;
     public int maxX = 18;
@@ -29,6 +34,8 @@ public class Painter : MonoBehaviour
         }
 
         GenerateProbabilityChecks();
+
+        artist = new Artist(squareSprite);
 
         InvokeRepeating("ShowNextPainting", 0, 3);
     }
@@ -63,6 +70,9 @@ public class Painter : MonoBehaviour
     //Generate and return a single painting - not active
     private GameObject GeneratePainting()
     {
+
+        return artist.GeneratePainting(colorTraits[Random.Range(0, colorTraits.Count)], formatTraits[Random.Range(0, formatTraits.Count)]);
+
         float width = Random.Range(minX, maxX);
         float height = Random.Range(minY, maxY);
 
