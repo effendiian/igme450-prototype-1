@@ -23,14 +23,4 @@ public class ColorTrait : Trait
         return color;
     }
 
-    public override void Upvote()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void Downvote()
-    {
-        throw new System.NotImplementedException();
-    }
-
 }

@@ -13,14 +13,4 @@ public class FormatTrait : Trait
         return ratio / Mathf.Max(ratio.x, ratio.y);
     }
 
-    public override void Upvote()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void Downvote()
-    {
-        throw new System.NotImplementedException();
-    }
-
 }

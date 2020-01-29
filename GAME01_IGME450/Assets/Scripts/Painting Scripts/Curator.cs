@@ -4,7 +4,13 @@ using UnityEngine;
 using NaughtyAttributes;
 using System.Linq;
 
-public class Painter : MonoBehaviour
+/**
+ * Currently the curator determines what kind of paintings to make randomly
+ * Then sends those to the Artist to be made
+ * 
+ * Might be better to move this somewhere else
+ */
+public class Curator : MonoBehaviour
 {
     GameObject painting;
     public GameObject paintingPrefab;

@@ -17,12 +17,18 @@ public class Artist
         GameObject painting = Object.Instantiate(paintingPrefab);
         painting.transform.position = painting.transform.position + new Vector3(0, 3, 0);
 
+        Painting script = painting.GetComponent(typeof(Painting)) as Painting;
+        script.SetTraits(color, format);
+
         //Get the sprite renerer so we can use it
         SpriteRenderer rend = painting.GetComponent(typeof(SpriteRenderer)) as SpriteRenderer;
 
-        
-        rend.color = color.GetColor();
-        
+        //Add some randomization to the range of shades, but always be fully transparent
+        Color randomizedColor = color.GetColor() * Random.Range(0.39f, 1);
+        randomizedColor.a = 1;
+        rend.color = randomizedColor;
+
+
         Vector2 ratio = format.GetRatio();
         Vector3 size = new Vector3(ratio.x, ratio.y) * Random.Range(4, 7);
 

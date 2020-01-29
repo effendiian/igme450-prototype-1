@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7232491524842962255}
   - component: {fileID: 3775719723667263013}
+  - component: {fileID: 5914416452032562846}
   m_Layer: 0
   m_Name: Painting
   m_TagString: Untagged
@@ -80,3 +81,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5914416452032562846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5742596361380684468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d3eb217470460f42a6e5f119c202c7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
