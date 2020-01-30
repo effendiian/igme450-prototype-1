@@ -225,6 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5d17553a751d3047bf3e50f1534bd08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reputationScoreMultiplier: 0
 --- !u!1001 &561925213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1340,22 +1341,22 @@ PrefabInstance:
     - target: {fileID: 707646228961706583, guid: 5c78ecbdb48cff345906cb8d9faf1556,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.036769796
+      value: 0.03147917
       objectReference: {fileID: 0}
     - target: {fileID: 707646228961706583, guid: 5c78ecbdb48cff345906cb8d9faf1556,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.901
+      value: 0.89900005
       objectReference: {fileID: 0}
     - target: {fileID: 707646228961706583, guid: 5c78ecbdb48cff345906cb8d9faf1556,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.036769796
+      value: 0.03147917
       objectReference: {fileID: 0}
     - target: {fileID: 707646228961706583, guid: 5c78ecbdb48cff345906cb8d9faf1556,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.901
+      value: 0.89900005
       objectReference: {fileID: 0}
     - target: {fileID: 707646228961706583, guid: 5c78ecbdb48cff345906cb8d9faf1556,
         type: 3}
@@ -1380,7 +1381,7 @@ PrefabInstance:
     - target: {fileID: 707646228961706583, guid: 5c78ecbdb48cff345906cb8d9faf1556,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.037325
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 8618771195176832831, guid: 5c78ecbdb48cff345906cb8d9faf1556,
         type: 3}

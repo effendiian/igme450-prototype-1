@@ -7,7 +7,7 @@ public class Influence : MonoBehaviour
 
     //varaibles
     private float multiplier; //float to hold the current multiplier value
-    private float reputationScoreMultiplier;    //float to decide how fast the bar will fill and multiplier will increase
+    public float reputationScoreMultiplier;    //float to decide how fast the bar will fill and multiplier will increase
 
 
     // Start is called before the first frame update
@@ -28,7 +28,10 @@ public class Influence : MonoBehaviour
     {
         multiplier += .1f;
 
-        this.transform.localScale = new Vector3(this.transform.localScale.x+reputationScoreMultiplier, this.transform.localScale.y);
+        if (this.transform.localScale.x < 18f)
+        {
+            this.transform.localScale = new Vector3(this.transform.localScale.x + reputationScoreMultiplier, this.transform.localScale.y);
+        }
     }
 
     //function to return the current multiplier that will effect popularity
