@@ -6,7 +6,7 @@ public class Influence : MonoBehaviour
 {
 
     //varaibles
-    private float multiplier; //float to hold the current multiplier value
+    private float influencePercentage; //float to hold the current multiplier value
     public float reputationScoreMultiplier;    //float to decide how fast the bar will fill and multiplier will increase
 
 
@@ -14,7 +14,7 @@ public class Influence : MonoBehaviour
     void Start()
     {
         reputationScoreMultiplier = .02f;
-        multiplier = 0;
+        influencePercentage = 0;
     }
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class Influence : MonoBehaviour
     //fixed update to run the timer for the influence bar and the mulitplier
     private void FixedUpdate()
     {
-        multiplier += .1f;
+        influencePercentage += .1f;
 
         if (this.transform.localScale.x < 18f)
         {
@@ -35,14 +35,38 @@ public class Influence : MonoBehaviour
     }
 
     //function to return the current multiplier that will effect popularity
-    public float Mulitplier
+    public float GetMulitplier()
     {
-        get { return multiplier; }
+        if (influencePercentage < 10)
+        {
+            return 1;
+        }
+        else if (influencePercentage < 20)
+        {
+            return 2;
+        }
+        else if (influencePercentage < 50)
+        {
+            return 4;
+        }
+        else if (influencePercentage < 85)
+        {
+            return 6;
+        }
+        else
+        {
+            return 8;
+        }
+
     }
 
     //function to reset the influence when it is used
-    public void ResetInfluence()
+    public float ResetInfluence()
     {
+        float multiplier = GetMulitplier();
+        influencePercentage = 0;
         this.transform.localScale = new Vector3(.03f, this.transform.localScale.y);
+
+        return multiplier;
     }
 }

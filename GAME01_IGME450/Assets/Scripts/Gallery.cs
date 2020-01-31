@@ -9,7 +9,7 @@ public class Gallery : MonoBehaviour
     private List<GameObject> paintings;
     private List<Painting> paintingScripts = new List<Painting>();
     public List<Trait> allTraits;
-
+    
     public GameObject curatorPrefab;
     public Influence influence;
     private GameObject curator;
@@ -47,12 +47,14 @@ public class Gallery : MonoBehaviour
 
     public void UpvoteCurrent()
     {
-        paintingScripts[currentIndex].Upvote();
+        float multipier = influence.ResetInfluence();
+        paintingScripts[currentIndex].Upvote(multipier);
     }
 
     public void DownvoteCurrent()
     {
-        paintingScripts[currentIndex].Downvote();
+        float multipier = influence.ResetInfluence();
+        paintingScripts[currentIndex].Downvote(multipier);
     }
 
     public void NextPainting()

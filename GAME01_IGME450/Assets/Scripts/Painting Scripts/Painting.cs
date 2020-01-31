@@ -10,7 +10,6 @@ public class Painting : MonoBehaviour
 
     private int timer;      //Timer for keeping track of how often the like button is being used
     private int frames = 60;    //Frame count used for incrmenting the timer
-    private int multiplier;     //Int to hold a multiplier for increasing amount of points recieved as the player does better
     private bool tooManyLikes;   //Bool for holding whether or not the player has liked or disliked the painting too often
 
     //Keep track of initial and end popularity over the night
@@ -39,53 +38,22 @@ public class Painting : MonoBehaviour
         }
     }
 
-    public void Upvote()
+    public void Upvote(float multiplier)
     {
         //Move logic for upvoting here
         //Switch this to something like diminishing returns?
-        if (multiplier > 6)
-        {
-            tooManyLikes = true;
-        }
+        popularity += Mathf.FloorToInt(multiplier);
 
-        if (tooManyLikes)
-        {
-            multiplier--;
-            popularity += multiplier;
-        }
-        else
-        {
-            if (timer == 3)
-            {
-                multiplier = 0;
-                popularity -= 2;
-            }
-            else if (timer == 2)
-            {
-                multiplier = 0;
-                popularity -= 1;
-            }
-            else if (timer <= 0)
-            {
-                popularity += multiplier;
-                multiplier++;
-            }
-            timer = 3;
-        }
-
-        if (popularity < 0)
-        {
-            popularity = 0;
-        }
+        if (popularity > 100)
+            popularity = 100;
     }
 
-    public void Downvote()
+    public void Downvote(float multiplier)
     {
-        popularity--;
+        popularity -= Mathf.FloorToInt(multiplier);
+
         if (popularity < 0)
-        {
             popularity = 0;
-        }
     }
 
     //Accessible point for getting the popularity to display on the screen
