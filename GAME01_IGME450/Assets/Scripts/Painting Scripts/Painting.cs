@@ -93,7 +93,7 @@ public class Painting : MonoBehaviour
         int totalTraitPopularity = color.GetRank() + format.GetRank();
         int totalTraitCapacity = 100 + 100; //Color + Format
 
-        int randomFactor = Random.Range(0, totalTraitCapacity - totalTraitPopularity);
+        int randomFactor = Random.Range(0, (totalTraitCapacity - totalTraitPopularity) / 2);
         float percentage = (float)(totalTraitPopularity + randomFactor) / totalTraitCapacity;
 
         return (int)(percentage * 100);

@@ -66,6 +66,15 @@ public class Gallery : MonoBehaviour
         }
     }
 
+    public void PreviousPainting()
+    {
+        if (currentIndex > 0)
+        {
+            paintings[currentIndex--].SetActive(false);
+            paintings[currentIndex].SetActive(true);
+        }
+    }
+
 
 
 }
