@@ -10,6 +10,7 @@ public abstract class Trait : ScriptableObject
     public int rank = 0;
 
     public string name;
+    private bool isTrending = false;
 
     /**
      * Updates the rank of a trait based on the change in popularity for a corresponding painting

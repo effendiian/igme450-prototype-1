@@ -37,7 +37,11 @@ public class Influence : MonoBehaviour
     //function to return the current multiplier that will effect popularity
     public float GetMulitplier()
     {
-        if (influencePercentage < 10)
+        if (influencePercentage < 5)
+        {
+            return 0;
+        }
+        else if (influencePercentage < 10)
         {
             return 1;
         }

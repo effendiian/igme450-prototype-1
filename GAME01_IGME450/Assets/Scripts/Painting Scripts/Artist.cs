@@ -15,7 +15,7 @@ public class Artist
     {
         //Create and disable the painting
         GameObject painting = Object.Instantiate(paintingPrefab);
-        painting.transform.position = painting.transform.position + new Vector3(0, 3, 0);
+        painting.transform.position = painting.transform.position + new Vector3(0, 1, 0);
 
         Painting script = painting.GetComponent(typeof(Painting)) as Painting;
         script.SetTraits(color, format);
