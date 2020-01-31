@@ -55,6 +55,15 @@ public class Gallery : MonoBehaviour
         paintingScripts[currentIndex].Downvote();
     }
 
+    public void NextPainting()
+    {
+        if (currentIndex < paintings.Count - 1)
+        {
+            paintings[currentIndex++].SetActive(false);
+            paintings[currentIndex].SetActive(true);
+        }
+    }
+
 
 
 }
