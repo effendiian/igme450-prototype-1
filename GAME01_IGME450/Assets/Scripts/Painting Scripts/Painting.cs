@@ -58,10 +58,14 @@ public class Painting : MonoBehaviour
 
     private void HandleClick(float multiplier, int sign)
     {
-        if (SuccessfulClick(multiplier))
+        if (SuccessfulClick())
         {
-            successfulClicks++;
-            popularity += Mathf.FloorToInt(sign * multiplier * GetSuccessfullClickFactor());
+            int change = Mathf.FloorToInt(sign * multiplier * GetSuccessfullClickFactor());
+            if (change != 0)
+            {
+                successfulClicks++;
+                popularity += Mathf.FloorToInt(sign * multiplier * GetSuccessfullClickFactor());
+            }
         }
         else
         {
@@ -117,12 +121,8 @@ public class Painting : MonoBehaviour
         }
     }
 
-    private bool SuccessfulClick(float multiplier)
+    private bool SuccessfulClick()
     {
-        if (multiplier == 0)
-        {
-            return false;
-        }
         if (successfulClicks == 0)
         {
             return true;
