@@ -34,7 +34,7 @@ public class Curator : MonoBehaviour
     {
         artist = new Artist(paintingPrefab);
 
-        InvokeRepeating("ShowNextPainting", 0, 3);
+        //InvokeRepeating("ShowNextPainting", 0, 3);
     }
 
     //Nothing to update right now
@@ -54,7 +54,7 @@ public class Curator : MonoBehaviour
     }
 
     //Generate and return a list of paintings - not active
-    public IList<GameObject> GeneratePaintings(int num)
+    public List<GameObject> GeneratePaintings(int num)
     {
         List<GameObject> paintings = new List<GameObject>();
         for (int i = 0; i < num; i++)
@@ -68,5 +68,12 @@ public class Curator : MonoBehaviour
     private GameObject GeneratePainting()
     {
         return artist.GeneratePainting(colorTraits[Random.Range(0, colorTraits.Count)], formatTraits[Random.Range(0, formatTraits.Count)]);
+    }
+
+    //Temporary method just to get things working
+    public void EnsureArtist()
+    {
+        if (artist == null)
+            artist = new Artist(paintingPrefab);
     }
 }
