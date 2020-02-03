@@ -10,12 +10,12 @@ public class Artist
     {
         this.paintingPrefab = paintingPrefab;
     }
-
-    public GameObject GeneratePainting(ColorTrait color, FormatTrait format)
+    
+    public GameObject GeneratePainting(ColorTrait color, FormatTrait format, float xPos)
     {
         //Create and disable the painting
         GameObject painting = Object.Instantiate(paintingPrefab);
-        painting.transform.position = painting.transform.position + new Vector3(0, 1, 0);
+        painting.transform.position = painting.transform.position + new Vector3(xPos, 1, 0);
 
         Painting script = painting.GetComponent(typeof(Painting)) as Painting;
         script.SetTraits(color, format);

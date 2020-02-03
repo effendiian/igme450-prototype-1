@@ -61,7 +61,11 @@ public class Gallery : MonoBehaviour
     {
         if (currentIndex < paintings.Count - 1)
         {
-            paintings[currentIndex++].SetActive(false);
+            currentIndex++;
+            Vector3 newXPos = new Vector3(currentIndex * 19.2f, 1.0f, -9);
+            Camera.main.GetComponent<CameraMovement>().MoveTo(newXPos);
+            paintings[currentIndex].SetActive(false);
+
             paintings[currentIndex].SetActive(true);
         }
     }
@@ -70,7 +74,11 @@ public class Gallery : MonoBehaviour
     {
         if (currentIndex > 0)
         {
-            paintings[currentIndex--].SetActive(false);
+            currentIndex--;
+            Vector3 newXPos = new Vector3(currentIndex * 19.2f, 1.0f, -9);
+            Camera.main.GetComponent<CameraMovement>().MoveTo(newXPos);
+            paintings[currentIndex].SetActive(false);
+
             paintings[currentIndex].SetActive(true);
         }
     }

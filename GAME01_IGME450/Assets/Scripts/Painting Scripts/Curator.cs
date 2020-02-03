@@ -12,9 +12,11 @@ using System.Linq;
  */
 public class Curator : MonoBehaviour
 {
-    GameObject painting;
     public GameObject paintingPrefab;
     public Sprite squareSprite;
+    
+    public GameObject painting;
+    public GameObject museumWall;
     
     public List<ColorTrait> colorTraits = new List<ColorTrait>();
     public List<FormatTrait> formatTraits = new List<FormatTrait>();
@@ -25,8 +27,8 @@ public class Curator : MonoBehaviour
     public int maxX = 18;
     public int minY = 2;
     public int maxY = 7;
-    
-    List<int> probabilityChecks = new List<int>();
+
+    public float xOffset = 19.2f;
 
     // Start is called before the first frame update
     //Grab all the painters assigned to the Painting to create probabilities
@@ -44,30 +46,24 @@ public class Curator : MonoBehaviour
         
     //}
 
-    //May not use in the future if we want to generate and hold a list of paintings, see methods below
-    //Destroy the current painting and generate a new one to view
-    public void ShowNextPainting()
-    {
-        Destroy(painting);
-        painting = GeneratePainting();
-        painting.SetActive(true);
-    }
-
     //Generate and return a list of paintings - not active
     public List<GameObject> GeneratePaintings(int num)
     {
         List<GameObject> paintings = new List<GameObject>();
         for (int i = 0; i < num; i++)
         {
-            paintings.Add(GeneratePainting());
+            GameObject wallSpace = Object.Instantiate(museumWall);
+            Vector3 newXPos = new Vector3(i * xOffset, 1.0f, 0);
+            wallSpace.transform.position = newXPos; 
+            paintings.Add(GeneratePainting(i * xOffset));
         }
         return paintings;
     }
 
     //Generate and return a single painting - not active
-    private GameObject GeneratePainting()
+    private GameObject GeneratePainting(float _xPos)
     {
-        return artist.GeneratePainting(colorTraits[Random.Range(0, colorTraits.Count)], formatTraits[Random.Range(0, formatTraits.Count)]);
+        return artist.GeneratePainting(colorTraits[Random.Range(0, colorTraits.Count)], formatTraits[Random.Range(0, formatTraits.Count)], _xPos);
     }
 
     //Temporary method just to get things working
