@@ -16,6 +16,8 @@ public class Gallery : MonoBehaviour
     public Curator curatorScript;
 
     public Text popularityText;
+    public Button backButton;
+    public Button nextButton;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +39,7 @@ public class Gallery : MonoBehaviour
         }
     
         paintings[currentIndex].SetActive(true);
+        CheckButtons();
     }
 
     // Update is called once per frame
@@ -67,6 +70,7 @@ public class Gallery : MonoBehaviour
             paintings[currentIndex].SetActive(false);
 
             paintings[currentIndex].SetActive(true);
+            CheckButtons();
         }
     }
 
@@ -80,6 +84,28 @@ public class Gallery : MonoBehaviour
             paintings[currentIndex].SetActive(false);
 
             paintings[currentIndex].SetActive(true);
+            CheckButtons();
+        }
+    }
+
+    private void CheckButtons()
+    {
+        if (currentIndex == 0)
+        {
+            backButton.interactable = false;
+        } else
+        {
+            backButton.interactable = true;
+        }
+
+
+        if (currentIndex == paintings.Count - 1)
+        {
+            nextButton.interactable = false;
+        }
+        else
+        {
+            nextButton.interactable = true;
         }
     }
 
