@@ -46,10 +46,17 @@ MonoBehaviour:
   paintingPrefab: {fileID: 5742596361380684468, guid: 4dc57797651ffcb4a9bd927c6bf33d12,
     type: 3}
   squareSprite: {fileID: 21300000, guid: 1f5799290932e09439ab0b0c0910b6c8, type: 3}
+  painting: {fileID: 0}
+  museumWall: {fileID: 0}
   colorTraits:
   - {fileID: 11400000, guid: 47b3ccc3cf57ea44bb9cad15ed5ee680, type: 2}
   - {fileID: 11400000, guid: 37321ce98cc43c7458f616af64b07390, type: 2}
   - {fileID: 11400000, guid: 410b0f6762d73ee438faba91536acea1, type: 2}
+  - {fileID: 11400000, guid: 72c93c5f89c8aa348a92a33c4c87e05f, type: 2}
+  - {fileID: 11400000, guid: eddb0a3de080ee546a2a87ea539da29b, type: 2}
+  - {fileID: 11400000, guid: 47e6312150af2634b88d177afd40510f, type: 2}
+  - {fileID: 11400000, guid: 3a5f77be71ee44f40b3d3c55dc33df5b, type: 2}
+  - {fileID: 11400000, guid: 4ff3b4c6bf28515418f6e88b2bb5f934, type: 2}
   formatTraits:
   - {fileID: 11400000, guid: a0074d2be09d88a459cb2f28a8995741, type: 2}
   - {fileID: 11400000, guid: 6026d092dfbfb5c48b4a92b78b0d82f6, type: 2}
@@ -58,3 +65,4 @@ MonoBehaviour:
   maxX: 18
   minY: 2
   maxY: 7
+  xOffset: 19.2

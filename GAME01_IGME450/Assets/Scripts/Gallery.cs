@@ -32,7 +32,7 @@ public class Gallery : MonoBehaviour
         }
 
         //This will have to happen every scene
-        paintings = curatorScript.GeneratePaintings(Random.Range(7, 10));
+        paintings = curatorScript.GeneratePaintings(Random.Range(10, 15));
         foreach (GameObject painting in paintings)
         {
             paintingScripts.Add(painting.GetComponent(typeof(Painting)) as Painting);
