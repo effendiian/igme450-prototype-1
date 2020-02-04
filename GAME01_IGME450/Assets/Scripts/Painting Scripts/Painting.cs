@@ -79,6 +79,11 @@ public class Painting : MonoBehaviour
         popularity = initialPopularity;
     }
 
+    public bool HasTrait(Trait trait)
+    {
+        return color.Equals(trait) || format.Equals(trait);
+    }
+
     private int CaclulatePopularity()
     {
         int totalTraitPopularity = color.GetRank() + format.GetRank();

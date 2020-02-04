@@ -33,4 +33,16 @@ public abstract class Trait : ScriptableObject
     {
         return rank;
     }
+
+    public override bool Equals(object other)
+    {
+        if (other is Trait)
+        {
+            Trait trait = other as Trait;
+            return trait.name.Equals(name);
+        } else
+        {
+            return false;
+        }
+    }
 }

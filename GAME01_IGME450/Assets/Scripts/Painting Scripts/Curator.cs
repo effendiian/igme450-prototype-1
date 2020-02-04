@@ -66,6 +66,14 @@ public class Curator : MonoBehaviour
         return artist.GeneratePainting(colorTraits[Random.Range(0, colorTraits.Count)], formatTraits[Random.Range(0, formatTraits.Count)], _xPos);
     }
 
+    public List<Trait> GetAllTraits()
+    {
+        List<Trait> traits = new List<Trait>();
+        traits.AddRange(colorTraits);
+        traits.AddRange(formatTraits);
+        return traits;
+    }
+
     //Temporary method just to get things working
     public void EnsureArtist()
     {

@@ -8,7 +8,7 @@ public class Gallery : MonoBehaviour
     private int currentIndex = 0;
     private List<GameObject> paintings;
     private List<Painting> paintingScripts = new List<Painting>();
-    public List<Trait> allTraits;
+    private List<Trait> allTraits;
     
     public GameObject curatorPrefab;
     public Influence influence;
@@ -26,6 +26,7 @@ public class Gallery : MonoBehaviour
         curatorScript.EnsureArtist();
 
         //TODO: This should be somewhere else as well
+        allTraits = curatorScript.GetAllTraits();
         foreach(Trait trait in allTraits)
         {
             trait.SetBaseRank(Random.Range(25, 60));
