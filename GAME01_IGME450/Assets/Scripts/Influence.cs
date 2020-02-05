@@ -6,25 +6,31 @@ public class Influence : MonoBehaviour
 {
 
     //varaibles
-    private float influencePercentage; //float to hold the current multiplier value
-    public float reputationScoreMultiplier;    //float to decide how fast the bar will fill and multiplier will increase
 
+    private float sizeDecrease;
+    /*private float influencePercentage; //float to hold the current multiplier value
+    public float reputationScoreMultiplier;    //float to decide how fast the bar will fill and multiplier will increase
+    */
 
     // Start is called before the first frame update
     void Start()
     {
-        reputationScoreMultiplier = .02f;
-        influencePercentage = 0;
+        sizeDecrease = .5f;
+        /*reputationScoreMultiplier = .02f;
+        influencePercentage = 0;*/
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(this.transform.localScale.x < .5)
+        {
+            //call a function to end the night when the player is out of infulence
+        }
     }
 
     //fixed update to run the timer for the influence bar and the mulitplier
-    private void FixedUpdate()
+    /*private void FixedUpdate()
     {
         influencePercentage += .1f;
 
@@ -63,14 +69,23 @@ public class Influence : MonoBehaviour
         }
 
     }
-
-    //function to reset the influence when it is used
-    public float ResetInfluence()
+    */
+    //function to reset the influence
+    public void ResetInfluence()
     {
-        float multiplier = GetMulitplier();
-        influencePercentage = 0;
-        this.transform.localScale = new Vector3(.03f, this.transform.localScale.y);
+        this.transform.localScale = new Vector3(18f, this.transform.localScale.y);
 
-        return multiplier;
     }
+
+
+    //function to subtract from the influence bar when the player likes or dislikes a painting
+    public void DecreaseInfluence()
+    {
+        if (this.transform.localScale.x >= .5)
+        {
+            this.transform.localScale = new Vector3(this.transform.localScale.x - sizeDecrease, this.transform.localScale.y);
+        }
+    }
+
+
 }

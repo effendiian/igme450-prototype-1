@@ -51,14 +51,16 @@ public class Gallery : MonoBehaviour
 
     public void UpvoteCurrent()
     {
-        float multipier = influence.ResetInfluence();
-        paintingScripts[currentIndex].Upvote(multipier);
+        //float multipier = influence.ResetInfluence();
+        float multiplier = 1f;
+        paintingScripts[currentIndex].Upvote(multiplier);
     }
 
     public void DownvoteCurrent()
     {
-        float multipier = influence.ResetInfluence();
-        paintingScripts[currentIndex].Downvote(multipier);
+        //float multipier = influence.ResetInfluence();
+        float multiplier = 1f;
+        paintingScripts[currentIndex].Downvote(multiplier);
     }
 
     public void NextPainting()
