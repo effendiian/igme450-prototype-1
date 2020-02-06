@@ -9,11 +9,15 @@ public class Gallery : MonoBehaviour
     private List<GameObject> paintings;
     private List<Painting> paintingScripts = new List<Painting>();
     private List<Trait> allTraits;
+
+    private List<Goal> goals;
     
     public GameObject curatorPrefab;
     public Influence influence;
     private GameObject curator;
     public Curator curatorScript;
+
+    public int numGoals = 4;
 
     public Text popularityText;
     public Button backButton;
@@ -35,14 +39,7 @@ public class Gallery : MonoBehaviour
         }
 
         //This will have to happen every scene
-        paintings = curatorScript.GeneratePaintings(Random.Range(10, 15));
-        foreach (GameObject painting in paintings)
-        {
-            paintingScripts.Add(painting.GetComponent(typeof(Painting)) as Painting);
-        }
-    
-        paintings[currentIndex].SetActive(true);
-        CheckButtons();
+        StartNight();
     }
 
     // Update is called once per frame
@@ -58,6 +55,59 @@ public class Gallery : MonoBehaviour
         {
             popularityText.text = popularityText.text + " <color=red>" + change + "</color>";
         }
+    }
+
+    public void StartNight()
+    {
+        currentIndex = 0;
+        paintings = curatorScript.GeneratePaintings(Random.Range(10, 15));
+        foreach (GameObject painting in paintings)
+        {
+            paintingScripts.Add(painting.GetComponent(typeof(Painting)) as Painting);
+        }
+
+        GenerateGoals();
+
+        paintings[currentIndex].SetActive(true);
+        CheckButtons();
+    }
+
+    public List<Goal> GetGoals()
+    {
+        return goals;
+    }
+
+    private void GenerateGoals()
+    {
+        goals = new List<Goal>();
+
+        List<Trait> usable = new List<Trait>(allTraits);
+        for (int i = 0; i < numGoals; i++)
+        {
+            int traitIndex = Random.Range(0, usable.Count);
+            Trait forGoal = usable[traitIndex];
+            usable.RemoveAt(traitIndex);
+
+            float num = Random.Range(0f, 1f);
+            if (num < 0.33)
+            {
+                goals.Add(new LikeAllGoal(GetRandomBool(), forGoal, 100));
+            } else if (num < 0.66)
+            {
+                goals.Add(new IncreasePopGoal(GetRandomBool(), forGoal, 150));
+            } else
+            {
+                goals.Add(new ClickXTimesGoal(GetRandomBool(), forGoal, 120));
+            }
+        }
+    }
+
+    private bool GetRandomBool()
+    {
+        if (Random.Range(0f, 1f) <= 0.5)
+            return true;
+        else
+            return false;
     }
 
     public void UpvoteCurrent()
