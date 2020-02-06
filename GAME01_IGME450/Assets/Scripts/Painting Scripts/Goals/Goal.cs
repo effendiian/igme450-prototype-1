@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Goal
 {
     protected Trait trait;
-    private int bonus;
+    protected int bonus;
 
     public Goal(Trait trait, int bonus)
     {

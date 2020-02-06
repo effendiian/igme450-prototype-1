@@ -9,6 +9,7 @@ public class Painting : MonoBehaviour
 
     private int BASE_CLICK_INCREASE = 2;
     private int clicks;
+    private int successfulClicks;
 
     //Keep track of initial and end popularity over the night
     private int initialPopularity;
@@ -42,6 +43,7 @@ public class Painting : MonoBehaviour
 
         if (multiplier > 0)
         {
+            successfulClicks += 1;
             popularity += (int)(multiplier * BASE_CLICK_INCREASE * sign);
         }
         else
@@ -52,6 +54,11 @@ public class Painting : MonoBehaviour
                 popularity -= (int)(multiplier * BASE_CLICK_INCREASE * sign);
             }
         }
+    }
+
+    public int GetNumberOfSuccessfulClicks()
+    {
+        return successfulClicks;
     }
 
     public int GetNumberOfClicks()
