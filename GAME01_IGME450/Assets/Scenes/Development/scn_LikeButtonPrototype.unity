@@ -377,6 +377,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5d17553a751d3047bf3e50f1534bd08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialXScale: 0
+  totalClicks: 15
 --- !u!1001 &561925213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1048,7 +1050,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 100
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1080,7 +1082,7 @@ RectTransform:
   m_AnchorMin: {x: 0.018000001, y: 0.7851869}
   m_AnchorMax: {x: 0.018000001, y: 0.7851869}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 200.3, y: 30}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1383418220 stripped
 MonoBehaviour:
@@ -1189,6 +1191,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1452649458}
   m_CullTransparentMesh: 0
+--- !u!114 &1516742513 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4590175488353879842, guid: 0527a682d8f96be4d9eda0ea5aa0aea7,
+    type: 3}
+  m_PrefabInstance: {fileID: 8966164444551494766}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1597810477
 GameObject:
   m_ObjectHideFlags: 0
@@ -1322,6 +1336,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 7002724200496465982}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1729254683 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2817036892899141925, guid: 68cb4a2a8456f3f4a85194e8f028bf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 561925213}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1898935734
 GameObject:
   m_ObjectHideFlags: 0
@@ -1724,6 +1750,16 @@ PrefabInstance:
       propertyPath: backButton
       value: 
       objectReference: {fileID: 1443547957}
+    - target: {fileID: 4689970143437582292, guid: 6afc35ae9fa5262419ab23846fdffa87,
+        type: 3}
+      propertyPath: upvoteButton
+      value: 
+      objectReference: {fileID: 1729254683}
+    - target: {fileID: 4689970143437582292, guid: 6afc35ae9fa5262419ab23846fdffa87,
+        type: 3}
+      propertyPath: downvoteButton
+      value: 
+      objectReference: {fileID: 1516742513}
     - target: {fileID: 4689970143437582294, guid: 6afc35ae9fa5262419ab23846fdffa87,
         type: 3}
       propertyPath: m_Name

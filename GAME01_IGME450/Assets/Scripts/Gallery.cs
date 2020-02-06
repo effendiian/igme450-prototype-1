@@ -49,6 +49,15 @@ public class Gallery : MonoBehaviour
     void Update()
     {
         popularityText.text = "Popularity: " + paintingScripts[currentIndex].GetPopularity();
+
+        int change = paintingScripts[currentIndex].GetChangeInPopularity();
+        if (change > 0)
+        {
+            popularityText.text = popularityText.text + " <color=green>+" + change + "</color>";
+        } else if (change < 0)
+        {
+            popularityText.text = popularityText.text + " <color=red>" + change + "</color>";
+        }
     }
 
     public void UpvoteCurrent()
