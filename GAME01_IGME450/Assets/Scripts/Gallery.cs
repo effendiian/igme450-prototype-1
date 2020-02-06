@@ -18,6 +18,8 @@ public class Gallery : MonoBehaviour
     public Text popularityText;
     public Button backButton;
     public Button nextButton;
+    public Button upvoteButton;
+    public Button downvoteButton;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +56,8 @@ public class Gallery : MonoBehaviour
         //float multipier = influence.ResetInfluence();
         float multiplier = 1f;
         paintingScripts[currentIndex].Upvote(multiplier);
+
+        CheckInfluence();
     }
 
     public void DownvoteCurrent()
@@ -61,6 +65,17 @@ public class Gallery : MonoBehaviour
         //float multipier = influence.ResetInfluence();
         float multiplier = 1f;
         paintingScripts[currentIndex].Downvote(multiplier);
+
+        CheckInfluence();
+    }
+
+    private void CheckInfluence()
+    {
+        if (influence.GetInfluence() <= 0)
+        {
+            upvoteButton.interactable = false;
+            downvoteButton.interactable = false;
+        }
     }
 
     public void NextPainting()

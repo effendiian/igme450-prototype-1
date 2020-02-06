@@ -6,8 +6,8 @@ public class Influence : MonoBehaviour
 {
 
     //varaibles
-
-    private float sizeDecrease;
+    public float initialXScale;
+    public int totalClicks = 15;
     /*private float influencePercentage; //float to hold the current multiplier value
     public float reputationScoreMultiplier;    //float to decide how fast the bar will fill and multiplier will increase
     */
@@ -15,7 +15,8 @@ public class Influence : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sizeDecrease = .5f;
+        initialXScale = this.transform.localScale.x + 0.1f; //Add 0.1 to deal with possible float errors
+        //sizeDecrease = .5f;
         /*reputationScoreMultiplier = .02f;
         influencePercentage = 0;*/
     }
@@ -77,14 +78,20 @@ public class Influence : MonoBehaviour
 
     }
 
+    public float GetInfluence()
+    {
+        return this.transform.localScale.x;
+    }
+
 
     //function to subtract from the influence bar when the player likes or dislikes a painting
     public void DecreaseInfluence()
     {
-        if (this.transform.localScale.x >= .5)
-        {
-            this.transform.localScale = new Vector3(this.transform.localScale.x - sizeDecrease, this.transform.localScale.y);
-        }
+        float newXScale = this.transform.localScale.x - (initialXScale / totalClicks);
+        if (newXScale < 0)
+            newXScale = 0;
+
+        this.transform.localScale = new Vector3(newXScale, this.transform.localScale.y);
     }
 
 
