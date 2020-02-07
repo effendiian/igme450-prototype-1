@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEditor.SceneManagement;
 
 /// <summary>
 /// Controller state.
@@ -71,8 +73,28 @@ public abstract class BaseController : MonoBehaviour
     {
         if(!string.IsNullOrEmpty(sceneName) && !string.IsNullOrWhiteSpace(sceneName))
         {
-            // Get the current scene name.
 
+#if UNITY_EDITOR
+            // Check if active scene is the loaded scene.
+            if (EditorSceneManager.GetActiveScene().name == sceneName)
+            {
+                return true;
+            }
+
+            // If not active scene, check if it's loaded.
+            Scene sceneRef = EditorSceneManager.GetSceneByName(sceneName);
+            return (sceneRef != null);
+#else
+            // Check if active scene is the loaded scene.
+            if(Game.Instance.ActiveScene.name == sceneName)
+            {
+                return true;
+            }
+
+            // If not active scene, check if it's loaded.
+            Scene sceneRef = SceneManager.GetSceneByName(sceneName);
+            return (sceneRef != null);
+#endif
         }
 
         // Scene doesn't exist or is not loaded.
@@ -100,6 +122,6 @@ public abstract class BaseController : MonoBehaviour
     /// </summary>
     protected virtual void Stop() => ChangeState(ControllerState.Stopped);
 
-    #endregion
+#endregion
 
 }

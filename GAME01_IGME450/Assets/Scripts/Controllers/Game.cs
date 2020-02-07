@@ -39,7 +39,6 @@ public class Game : Singleton<Game>
 #endif
     }
 
-    public bool HasScene(string )
 
     #endregion
 

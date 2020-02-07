@@ -41,6 +41,11 @@ public class MainMenuController : BaseController
         // Ensure the state is stopped.
         this.Stop();
 
+        // Determine if the main menu UI scene has been loaded.
+        if (!IsSceneLoaded(ui_MainMenu.SceneName))
+        {
+        }
+
 
     }
 
