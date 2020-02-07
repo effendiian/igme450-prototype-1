@@ -15,6 +15,8 @@ public class Painting : MonoBehaviour
     private int initialPopularity;
     private int popularity;
 
+    public GameObject golfbar;
+
     // Start is called before the first frame update
     //void Start()
     //{
@@ -23,7 +25,8 @@ public class Painting : MonoBehaviour
 
     public void Upvote(float multiplier)
     {
-        HandleClick(multiplier, 1);
+        int golfMulti = golfbar.GetComponent<GolfMeter>().GetBonus();
+        HandleClick(multiplier, 1, golfMulti);
 
         if (popularity > 100)
             popularity = 100;
@@ -31,27 +34,28 @@ public class Painting : MonoBehaviour
 
     public void Downvote(float multiplier)
     {
-        HandleClick(multiplier, -1);
+        int golfMulti = golfbar.GetComponent<GolfMeter>().GetBonus();
+        HandleClick(multiplier, -1, golfMulti);
 
         if (popularity < 0)
             popularity = 0;
     }
 
-    private void HandleClick(float multiplier, int sign)
+    private void HandleClick(float multiplier, int sign, int _golfMulti)
     {
         clicks += 1;
 
         if (multiplier > 0)
         {
             successfulClicks += 1;
-            popularity += (int)(multiplier * BASE_CLICK_INCREASE * sign);
+            popularity += (int)(multiplier * BASE_CLICK_INCREASE * sign * _golfMulti);
         }
         else
         {
             //Click which has a negative impact, don't go lower than the start
             if ((sign > 0 && GetChangeInPopularity() >= 0) || GetChangeInPopularity() <= 0)
             {
-                popularity -= (int)(multiplier * BASE_CLICK_INCREASE * sign);
+                popularity -= (int)(multiplier * BASE_CLICK_INCREASE * sign * _golfMulti);
             }
         }
     }
@@ -77,13 +81,15 @@ public class Painting : MonoBehaviour
         return popularity - initialPopularity;
     }
 
-    public void SetTraits(ColorTrait color, FormatTrait format)
+    public void SetTraits(ColorTrait color, FormatTrait format, GameObject _golfbar)
     {
         this.color = color;
         this.format = format;
 
         initialPopularity = CaclulatePopularity();
         popularity = initialPopularity;
+
+        golfbar = _golfbar;
     }
 
     public bool HasTrait(Trait trait)

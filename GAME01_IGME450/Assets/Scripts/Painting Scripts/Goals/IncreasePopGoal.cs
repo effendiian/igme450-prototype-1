@@ -31,7 +31,7 @@ public class IncreasePopGoal : Goal
         {
             if (painting.HasTrait(trait))
             {
-                if ((isIncrease && painting.GetChangeInPopularity() >= requiredChange) || (!isIncrease && painting.GetChangeInPopularity() <= requiredChange))
+                if ((isIncrease && painting.GetChangeInPopularity() >= requiredChange) || (!isIncrease && painting.GetChangeInPopularity() <= requiredChange * -1))
                 {
                     return true;
                 }

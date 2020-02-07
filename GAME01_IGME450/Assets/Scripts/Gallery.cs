@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Gallery : MonoBehaviour
 {
     private int currentIndex = 0;
-    private List<GameObject> paintings;
+    private List<GameObject> paintings = new List<GameObject>();
     private List<Painting> paintingScripts = new List<Painting>();
     private List<Trait> allTraits;
 
@@ -16,6 +16,7 @@ public class Gallery : MonoBehaviour
     public Influence influence;
     private GameObject curator;
     public Curator curatorScript;
+    public GoalsUI goalsUI;
 
     public int numGoals = 4;
 
@@ -25,6 +26,8 @@ public class Gallery : MonoBehaviour
     public Button upvoteButton;
     public Button downvoteButton;
     public GameObject goalScreen;
+
+    private int money = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -60,8 +63,13 @@ public class Gallery : MonoBehaviour
 
     public void StartNight()
     {
-        currentIndex = 0;
+        foreach(GameObject painting in paintings)
+        {
+            Destroy(painting);
+        }
+        
         paintings = curatorScript.GeneratePaintings(Random.Range(10, 15));
+        paintingScripts = new List<Painting>();
         foreach (GameObject painting in paintings)
         {
             paintingScripts.Add(painting.GetComponent(typeof(Painting)) as Painting);
@@ -73,8 +81,9 @@ public class Gallery : MonoBehaviour
 
         upvoteButton.interactable = true;
         downvoteButton.interactable = true;
-
-        paintings[currentIndex].SetActive(true);
+        
+        currentIndex = 1;
+        PreviousPainting();
         CheckButtons();
     }
 
@@ -85,10 +94,11 @@ public class Gallery : MonoBehaviour
         {
             if (goal.MetGoal(paintingScripts))
             {
-                //TODO: Add the bonus to the players money
-                goal.GetBonus();
+                money += goal.GetBonus();
             }
         }
+
+        goalsUI.EndNight(paintingScripts, money);
     }
 
     public List<Goal> GetGoals()
@@ -173,7 +183,6 @@ public class Gallery : MonoBehaviour
             currentIndex++;
             Vector3 newXPos = new Vector3(currentIndex * 19.2f, 1.0f, -9);
             Camera.main.GetComponent<CameraMovement>().MoveTo(newXPos);
-            paintings[currentIndex].SetActive(false);
 
             paintings[currentIndex].SetActive(true);
             CheckButtons();
@@ -187,7 +196,6 @@ public class Gallery : MonoBehaviour
             currentIndex--;
             Vector3 newXPos = new Vector3(currentIndex * 19.2f, 1.0f, -9);
             Camera.main.GetComponent<CameraMovement>().MoveTo(newXPos);
-            paintings[currentIndex].SetActive(false);
 
             paintings[currentIndex].SetActive(true);
             CheckButtons();

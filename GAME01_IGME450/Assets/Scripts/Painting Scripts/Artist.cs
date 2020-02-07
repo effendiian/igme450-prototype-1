@@ -11,14 +11,14 @@ public class Artist
         this.paintingPrefab = paintingPrefab;
     }
     
-    public GameObject GeneratePainting(ColorTrait color, FormatTrait format, float xPos)
+    public GameObject GeneratePainting(ColorTrait color, FormatTrait format, float xPos, GameObject _golfbar)
     {
         //Create and disable the painting
         GameObject painting = Object.Instantiate(paintingPrefab);
         painting.transform.position = painting.transform.position + new Vector3(xPos, 1, 0);
 
         Painting script = painting.GetComponent(typeof(Painting)) as Painting;
-        script.SetTraits(color, format);
+        script.SetTraits(color, format, _golfbar);
 
         //Get the sprite renerer so we can use it
         SpriteRenderer rend = painting.GetComponent(typeof(SpriteRenderer)) as SpriteRenderer;
