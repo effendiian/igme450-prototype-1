@@ -384,7 +384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialXScale: 0
-  totalClicks: 20
+  totalClicks: 15
 --- !u!1001 &561925213
 PrefabInstance:
   m_ObjectHideFlags: 0
