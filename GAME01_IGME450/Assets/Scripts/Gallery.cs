@@ -100,7 +100,15 @@ public class Gallery : MonoBehaviour
     {
         goals = new List<Goal>();
 
-        List<Trait> usable = new List<Trait>(allTraits);
+        //Only allow traits used in paintings for goals
+        HashSet<Trait> usableTraits = new HashSet<Trait>();
+        foreach (Painting painting in paintingScripts)
+        {
+            usableTraits.Add(painting.GetColorTrait());
+            usableTraits.Add(painting.GetFormatTrait());
+        }
+
+        List<Trait> usable = new List<Trait>(usableTraits);
         for (int i = 0; i < numGoals; i++)
         {
             int traitIndex = Random.Range(0, usable.Count);

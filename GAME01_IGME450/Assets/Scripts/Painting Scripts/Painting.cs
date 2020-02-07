@@ -91,6 +91,16 @@ public class Painting : MonoBehaviour
         return color.Equals(trait) || format.Equals(trait);
     }
 
+    public ColorTrait GetColorTrait()
+    {
+        return color;
+    }
+
+    public FormatTrait GetFormatTrait()
+    {
+        return format;
+    }
+
     private int CaclulatePopularity()
     {
         int totalTraitPopularity = color.GetRank() + format.GetRank();
