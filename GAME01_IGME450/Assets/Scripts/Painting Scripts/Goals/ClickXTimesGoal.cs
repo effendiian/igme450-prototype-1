@@ -9,7 +9,7 @@ public class ClickXTimesGoal : Goal
     public ClickXTimesGoal(bool isIncrease, Trait trait, int baseBonus) : base(trait, baseBonus)
     {
 
-        this.requiredClickNum = Random.Range(4, 12);
+        this.requiredClickNum = Random.Range(4, 10);
         this.bonus *= Mathf.CeilToInt(requiredClickNum / 4);
     }
 

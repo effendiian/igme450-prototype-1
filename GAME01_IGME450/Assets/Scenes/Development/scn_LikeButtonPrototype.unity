@@ -384,7 +384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialXScale: 0
-  totalClicks: 15
+  totalClicks: 20
 --- !u!1001 &561925213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2164,6 +2164,7 @@ MonoBehaviour:
     type: 3}
   hideButton: {fileID: 1121639337}
   nextNightButton: {fileID: 828607778}
+  moneyText: {fileID: 0}
 --- !u!114 &1729254683 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2817036892899141925, guid: 68cb4a2a8456f3f4a85194e8f028bf00,
