@@ -351,6 +351,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2640550398409506803, guid: 747671f450a0aa2429f8984847c8ad4f,
         type: 3}
+    - target: {fileID: 8612549441661245641, guid: b947d5b543250b94d98da75674a7f13f,
+        type: 3}
+      propertyPath: golfmeter
+      value: 
+      objectReference: {fileID: 4000592859494855155, guid: c68afb5f7e847474194e6e2a46229b26,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b947d5b543250b94d98da75674a7f13f, type: 3}
 --- !u!1 &519918075 stripped
@@ -1003,86 +1009,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &946972363
+--- !u!1 &946972363 stripped
 GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 4000592859494855155, guid: c68afb5f7e847474194e6e2a46229b26,
+    type: 3}
+  m_PrefabInstance: {fileID: 4000592858558371640}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 946972365}
-  - component: {fileID: 946972364}
-  m_Layer: 0
-  m_Name: golfbar
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &946972364
-SpriteRenderer:
+--- !u!114 &946972366
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 946972363}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -2144550625
-  m_SortingLayer: 1
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 38342b6c8e3ebdd418278403fcbc6d52, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 500, y: 124}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &946972365
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 946972363}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.01, y: -3.53, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3d7c5660d3f75b428884c2beccf083b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &965588720 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2472107180036069469, guid: 04161b900d634d64db14b627505217aa,
@@ -2449,6 +2393,76 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c78ecbdb48cff345906cb8d9faf1556, type: 3}
+--- !u!1001 &4000592858558371640
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000592859494855155, guid: c68afb5f7e847474194e6e2a46229b26,
+        type: 3}
+      propertyPath: m_Name
+      value: golfbar
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000592859494855157, guid: c68afb5f7e847474194e6e2a46229b26,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000592859494855157, guid: c68afb5f7e847474194e6e2a46229b26,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000592859494855157, guid: c68afb5f7e847474194e6e2a46229b26,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000592859494855157, guid: c68afb5f7e847474194e6e2a46229b26,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000592859494855157, guid: c68afb5f7e847474194e6e2a46229b26,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000592859494855157, guid: c68afb5f7e847474194e6e2a46229b26,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000592859494855157, guid: c68afb5f7e847474194e6e2a46229b26,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000592859494855157, guid: c68afb5f7e847474194e6e2a46229b26,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000592859494855157, guid: c68afb5f7e847474194e6e2a46229b26,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000592859494855157, guid: c68afb5f7e847474194e6e2a46229b26,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000592859494855157, guid: c68afb5f7e847474194e6e2a46229b26,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3603972529331360693, guid: c68afb5f7e847474194e6e2a46229b26, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: c68afb5f7e847474194e6e2a46229b26, type: 3}
 --- !u!1001 &4689970142599550146
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2866,7 +2880,7 @@ PrefabInstance:
     - target: {fileID: 2472107180036069469, guid: 04161b900d634d64db14b627505217aa,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 28.200012
+      value: 28.200195
       objectReference: {fileID: 0}
     - target: {fileID: 2472107180036069469, guid: 04161b900d634d64db14b627505217aa,
         type: 3}
