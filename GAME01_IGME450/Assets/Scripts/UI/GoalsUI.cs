@@ -46,7 +46,8 @@ public class GoalsUI : MonoBehaviour
             GameObject text = Instantiate(textPrefab);
             text.transform.parent = this.transform;
             text.transform.position = new Vector3(0, 0);
-            text.GetComponent<Text>().text = goal.GetGoalText();
+            GoalTextUI goalText = text.GetComponent<GoalTextUI>();
+            goalText.SetText(goal.GetGoalText(), "Bonus: $" + goal.GetBonus());
             goalTexts.Add(text);
         }
     }
