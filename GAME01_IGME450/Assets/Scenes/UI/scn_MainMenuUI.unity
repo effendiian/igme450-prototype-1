@@ -336,6 +336,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMenu_UI
       objectReference: {fileID: 0}
+    - target: {fileID: 924705506983556172, guid: ee84ba5ac47e58b4eb8182291f8a8e9b,
+        type: 3}
+      propertyPath: m_TagString
+      value: MenuUI
+      objectReference: {fileID: 0}
     - target: {fileID: 924705507069526577, guid: ee84ba5ac47e58b4eb8182291f8a8e9b,
         type: 3}
       propertyPath: m_textInfo.characterCount
