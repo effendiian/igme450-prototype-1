@@ -24,6 +24,7 @@ public class Gallery : MonoBehaviour
     public Button nextButton;
     public Button upvoteButton;
     public Button downvoteButton;
+    public GameObject goalScreen;
 
     // Start is called before the first frame update
     void Start()
@@ -66,10 +67,28 @@ public class Gallery : MonoBehaviour
             paintingScripts.Add(painting.GetComponent(typeof(Painting)) as Painting);
         }
 
+        influence.ResetInfluence();
         GenerateGoals();
+        goalScreen.GetComponent<GoalsUI>().CreateText(goals);
+
+        upvoteButton.interactable = true;
+        downvoteButton.interactable = true;
 
         paintings[currentIndex].SetActive(true);
         CheckButtons();
+    }
+
+    public void EndNight()
+    {
+
+        foreach (var goal in goals)
+        {
+            if (goal.MetGoal(paintingScripts))
+            {
+                //TODO: Add the bonus to the players money
+                goal.GetBonus();
+            }
+        }
     }
 
     public List<Goal> GetGoals()
@@ -134,7 +153,9 @@ public class Gallery : MonoBehaviour
         {
             upvoteButton.interactable = false;
             downvoteButton.interactable = false;
-        }
+
+            EndNight();
+        } 
     }
 
     public void NextPainting()
