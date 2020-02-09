@@ -10,6 +10,7 @@ This repository is a work-in-progress.
 
 Team Monster Hunter Odyssey
 
+- Tucker Burke (@TuckerBurkeRIT)
 - Steven Domitrz (@stevenfd)
 - Ian Effendi (@rimij405)
 - Mitch Heard (@mwh2719)
