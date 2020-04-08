@@ -10,7 +10,7 @@ public class GolfMeter : MonoBehaviour
     public float lerpPercent = 0.0f;
     public int count = 1;
     public bool goingRight = true;
-    GameObject ticker;
+    public GameObject ticker;
 
     // Start is called before the first frame update
     void Start()

@@ -7,6 +7,8 @@ public class Gallery : MonoBehaviour
 {
     private int currentIndex = 0;
     private List<GameObject> paintings = new List<GameObject>();
+    private List<GameObject> golfMeters = new List<GameObject>();
+    private List<GameObject> tickers = new List<GameObject>();
     private List<Painting> paintingScripts = new List<Painting>();
     private List<Trait> allTraits;
 
@@ -32,6 +34,8 @@ public class Gallery : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        golfMeters = curatorScript.golfMeters;
+
         //TODO: Curator should be able to be constant throughout scenes
         curatorScript.EnsureArtist();
 
@@ -63,6 +67,16 @@ public class Gallery : MonoBehaviour
 
     public void StartNight()
     {
+
+        //deleting all the old golf meters and tickers
+        foreach (GameObject golfMeter in golfMeters)
+        {
+            Destroy(golfMeter.GetComponent<GolfMeter>().ticker);
+            Destroy(golfMeter);
+        }
+
+        
+
         foreach(GameObject painting in paintings)
         {
             Destroy(painting);

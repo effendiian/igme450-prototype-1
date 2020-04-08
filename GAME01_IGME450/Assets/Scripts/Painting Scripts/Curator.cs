@@ -22,6 +22,8 @@ public class Curator : MonoBehaviour
     public List<ColorTrait> colorTraits = new List<ColorTrait>();
     public List<FormatTrait> formatTraits = new List<FormatTrait>();
 
+    public List<GameObject> golfMeters = new List<GameObject>();
+
     Artist artist;
 
     public int minX = 2;
@@ -55,6 +57,7 @@ public class Curator : MonoBehaviour
         {
             GameObject wallSpace = Object.Instantiate(museumWall);
             GameObject golfbar = Object.Instantiate(golfmeter);
+            golfMeters.Add(golfbar);
             Vector3 newXPos = new Vector3(i * xOffset, 1.0f, 0);
             wallSpace.transform.position = newXPos;
             newXPos = new Vector3(i * xOffset, -3.53f, 0);
