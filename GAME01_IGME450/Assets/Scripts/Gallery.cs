@@ -29,11 +29,17 @@ public class Gallery : MonoBehaviour
     public Button downvoteButton;
     public GameObject goalScreen;
 
+    private GameObject[] walls; //array to hold the walls
+    private bool wallToMove = false;    //int to hold which of the two walls to move
+
     private int money = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        //setting the wall to the wall in the scene
+        walls = new GameObject[] { GameObject.Find("Walls").transform.GetChild(0).gameObject, GameObject.Find("Walls").transform.GetChild(1).gameObject };
+
         golfMeters = curatorScript.golfMeters;
 
         //TODO: Curator should be able to be constant throughout scenes
@@ -198,6 +204,9 @@ public class Gallery : MonoBehaviour
             Vector3 newXPos = new Vector3(currentIndex * 19.2f, 1.0f, -9);
             Camera.main.GetComponent<CameraMovement>().MoveTo(newXPos);
 
+            walls[ConvertToInt(wallToMove)].transform.position = new Vector3(newXPos.x, 1.0f);
+            wallToMove = !wallToMove;
+
             paintings[currentIndex].SetActive(true);
             CheckButtons();
         }
@@ -210,6 +219,10 @@ public class Gallery : MonoBehaviour
             currentIndex--;
             Vector3 newXPos = new Vector3(currentIndex * 19.2f, 1.0f, -9);
             Camera.main.GetComponent<CameraMovement>().MoveTo(newXPos);
+
+
+            walls[ConvertToInt(wallToMove)].transform.position = new Vector3(newXPos.x, 1.0f);
+            wallToMove = !wallToMove;
 
             paintings[currentIndex].SetActive(true);
             CheckButtons();
@@ -236,6 +249,9 @@ public class Gallery : MonoBehaviour
             nextButton.interactable = true;
         }
     }
+
+    //helper method to convert the bool into an int for use in swapping the walls
+    private int ConvertToInt(bool b) => b ? 1 : 0;
 
 
 

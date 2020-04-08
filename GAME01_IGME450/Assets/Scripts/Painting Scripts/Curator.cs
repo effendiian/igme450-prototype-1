@@ -55,11 +55,11 @@ public class Curator : MonoBehaviour
         List<GameObject> paintings = new List<GameObject>();
         for (int i = 0; i < num; i++)
         {
-            GameObject wallSpace = Object.Instantiate(museumWall);
+            //GameObject wallSpace = Object.Instantiate(museumWall);
             GameObject golfbar = Object.Instantiate(golfmeter);
             golfMeters.Add(golfbar);
             Vector3 newXPos = new Vector3(i * xOffset, 1.0f, 0);
-            wallSpace.transform.position = newXPos;
+            //wallSpace.transform.position = newXPos;
             newXPos = new Vector3(i * xOffset, -3.53f, 0);
             golfbar.transform.position = newXPos;
             paintings.Add(GeneratePainting(i * xOffset, golfbar));
