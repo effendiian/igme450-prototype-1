@@ -15,26 +15,27 @@ public class Painting : MonoBehaviour
     private int initialPopularity;
     private int popularity;
 
-    public GameObject golfbar;
 
     // Start is called before the first frame update
     //void Start()
     //{
-        
+
     //}
 
-    public void Upvote(float multiplier)
+    public void Upvote(float multiplier, GameObject golfbar)
     {
-        int golfMulti = golfbar.GetComponent<GolfMeter>().GetBonus();
+        clicks += 1;
+        int golfMulti = golfbar.GetComponent<GolfMeter>().GetBonus(clicks);
         HandleClick(multiplier, 1, golfMulti);
 
         if (popularity > 100)
             popularity = 100;
     }
 
-    public void Downvote(float multiplier)
+    public void Downvote(float multiplier, GameObject golfbar)
     {
-        int golfMulti = golfbar.GetComponent<GolfMeter>().GetBonus();
+        clicks += 1;
+        int golfMulti = golfbar.GetComponent<GolfMeter>().GetBonus(clicks);
         HandleClick(multiplier, -1, golfMulti);
 
         if (popularity < 0)
@@ -43,7 +44,6 @@ public class Painting : MonoBehaviour
 
     private void HandleClick(float multiplier, int sign, int _golfMulti)
     {
-        clicks += 1;
 
         if (multiplier > 0)
         {
@@ -81,7 +81,7 @@ public class Painting : MonoBehaviour
         return popularity - initialPopularity;
     }
 
-    public void SetTraits(ColorTrait color, FormatTrait format, GameObject _golfbar)
+    public void SetTraits(ColorTrait color, FormatTrait format)
     {
         this.color = color;
         this.format = format;
@@ -89,7 +89,6 @@ public class Painting : MonoBehaviour
         initialPopularity = CaclulatePopularity();
         popularity = initialPopularity;
 
-        golfbar = _golfbar;
     }
 
     public bool HasTrait(Trait trait)

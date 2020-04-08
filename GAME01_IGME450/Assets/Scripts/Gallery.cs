@@ -7,8 +7,7 @@ public class Gallery : MonoBehaviour
 {
     private int currentIndex = 0;
     private List<GameObject> paintings = new List<GameObject>();
-    private List<GameObject> golfMeters = new List<GameObject>();
-    private List<GameObject> tickers = new List<GameObject>();
+    private GameObject golfMeter;    //GameObject to hold the golf meter
     private List<Painting> paintingScripts = new List<Painting>();
     private List<Trait> allTraits;
 
@@ -39,8 +38,7 @@ public class Gallery : MonoBehaviour
     {
         //setting the wall to the wall in the scene
         walls = new GameObject[] { GameObject.Find("Walls").transform.GetChild(0).gameObject, GameObject.Find("Walls").transform.GetChild(1).gameObject };
-
-        golfMeters = curatorScript.golfMeters;
+        golfMeter = GameObject.Find("golfbar");
 
         //TODO: Curator should be able to be constant throughout scenes
         curatorScript.EnsureArtist();
@@ -74,14 +72,6 @@ public class Gallery : MonoBehaviour
     public void StartNight()
     {
 
-        //deleting all the old golf meters and tickers
-        foreach (GameObject golfMeter in golfMeters)
-        {
-            Destroy(golfMeter.GetComponent<GolfMeter>().ticker);
-            Destroy(golfMeter);
-        }
-
-        
 
         foreach(GameObject painting in paintings)
         {
@@ -171,7 +161,7 @@ public class Gallery : MonoBehaviour
     {
         //float multipier = influence.ResetInfluence();
         float multiplier = 1f;
-        paintingScripts[currentIndex].Upvote(multiplier);
+        paintingScripts[currentIndex].Upvote(multiplier, golfMeter);
 
         CheckInfluence();
     }
@@ -180,7 +170,7 @@ public class Gallery : MonoBehaviour
     {
         //float multipier = influence.ResetInfluence();
         float multiplier = 1f;
-        paintingScripts[currentIndex].Downvote(multiplier);
+        paintingScripts[currentIndex].Downvote(multiplier, golfMeter);
 
         CheckInfluence();
     }
@@ -205,7 +195,11 @@ public class Gallery : MonoBehaviour
             Camera.main.GetComponent<CameraMovement>().MoveTo(newXPos);
 
             walls[ConvertToInt(wallToMove)].transform.position = new Vector3(newXPos.x, 1.0f);
+            golfMeter.transform.position = new Vector3(newXPos.x, -3.5f);
+            golfMeter.GetComponent<GolfMeter>().ChangePainting(paintings[currentIndex].GetComponent<Painting>().GetNumberOfClicks());
             wallToMove = !wallToMove;
+
+            
 
             paintings[currentIndex].SetActive(true);
             CheckButtons();
@@ -222,6 +216,8 @@ public class Gallery : MonoBehaviour
 
 
             walls[ConvertToInt(wallToMove)].transform.position = new Vector3(newXPos.x, 1.0f);
+            golfMeter.transform.position = new Vector3(newXPos.x, -3.5f);
+            golfMeter.GetComponent<GolfMeter>().ChangePainting(paintings[currentIndex].GetComponent<Painting>().GetNumberOfClicks());
             wallToMove = !wallToMove;
 
             paintings[currentIndex].SetActive(true);
