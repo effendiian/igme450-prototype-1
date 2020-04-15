@@ -249,6 +249,9 @@ public class Gallery : MonoBehaviour
     //helper method to convert the bool into an int for use in swapping the walls
     private int ConvertToInt(bool b) => b ? 1 : 0;
 
-
+    public int Money
+    {
+        get { return money; }
+    }
 
 }

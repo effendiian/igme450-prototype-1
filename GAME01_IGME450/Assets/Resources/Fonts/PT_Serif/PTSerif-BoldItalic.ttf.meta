@@ -11,7 +11,9 @@ TrueTypeFontImporter:
   fontName: PT Serif
   fontNames:
   - PT Serif
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: dcbb6bb99aa3af940a6788b4a5a65d87, type: 3}
+  - {fileID: 12800000, guid: ef635acf0573ac245a835c1f18a18303, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
