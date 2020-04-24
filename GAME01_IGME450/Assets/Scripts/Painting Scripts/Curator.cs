@@ -22,6 +22,7 @@ public class Curator : MonoBehaviour
     public List<ColorTrait> colorTraits = new List<ColorTrait>();
     public List<FormatTrait> formatTraits = new List<FormatTrait>();
 
+
     Artist artist;
 
     public int minX = 2;
@@ -53,21 +54,17 @@ public class Curator : MonoBehaviour
         List<GameObject> paintings = new List<GameObject>();
         for (int i = 0; i < num; i++)
         {
-            GameObject wallSpace = Object.Instantiate(museumWall);
-            GameObject golfbar = Object.Instantiate(golfmeter);
             Vector3 newXPos = new Vector3(i * xOffset, 1.0f, 0);
-            wallSpace.transform.position = newXPos;
             newXPos = new Vector3(i * xOffset, -3.53f, 0);
-            golfbar.transform.position = newXPos;
-            paintings.Add(GeneratePainting(i * xOffset, golfbar));
+            paintings.Add(GeneratePainting(i * xOffset));
         }
         return paintings;
     }
 
     //Generate and return a single painting - not active
-    private GameObject GeneratePainting(float _xPos, GameObject _golfbar)
+    private GameObject GeneratePainting(float _xPos)
     {
-        return artist.GeneratePainting(colorTraits[Random.Range(0, colorTraits.Count)], formatTraits[Random.Range(0, formatTraits.Count)], _xPos, _golfbar);
+        return artist.GeneratePainting(colorTraits[Random.Range(0, colorTraits.Count)], formatTraits[Random.Range(0, formatTraits.Count)], _xPos);
     }
 
     public List<Trait> GetAllTraits()

@@ -7,10 +7,10 @@ public class GolfMeter : MonoBehaviour
     public GameObject meterTicker;
     public Vector3 leftEdge;
     public Vector3 rightEdge;
-    public float lerpPercent = 0.0f;
+    float lerpPercent = 0.0f;
     public int count = 1;
     public bool goingRight = true;
-    GameObject ticker;
+    public GameObject ticker;
 
     // Start is called before the first frame update
     void Start()
@@ -48,10 +48,9 @@ public class GolfMeter : MonoBehaviour
 
     }
 
-    public int GetBonus()
+    public int GetBonus(int count)
     {
-        count++;
-
+        this.count = count+1;
         if (count >= 6) { count = 6; }
 
         int multiplier = 1;
@@ -67,5 +66,14 @@ public class GolfMeter : MonoBehaviour
 
         //Debug.Log(count);
         return multiplier;
+    }
+
+    //function to handle the count change when the painting is changed
+    public void ChangePainting(int count)
+    {
+        leftEdge = new Vector3(transform.position.x - 2.5f, transform.position.y, transform.position.z);
+        rightEdge = new Vector3(transform.position.x + 2.5f, transform.position.y, transform.position.z);
+        ticker.transform.position = leftEdge;
+        this.count = count+1;
     }
 }
