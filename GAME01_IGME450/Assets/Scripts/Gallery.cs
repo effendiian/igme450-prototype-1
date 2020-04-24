@@ -31,6 +31,11 @@ public class Gallery : MonoBehaviour
     private GameObject[] walls; //array to hold the walls
     private bool wallToMove = false;    //int to hold which of the two walls to move
 
+    public GameObject store;
+
+    public GameObject cupMngr;
+
+
     private int money = 0;
 
     // Start is called before the first frame update
@@ -69,9 +74,31 @@ public class Gallery : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+
+    }
+
     public void StartNight()
     {
 
+        
+        int cupCount = cupMngr.transform.childCount;
+
+        //setting all the other cups to inactive
+        for(int i = 0; i < cupCount; i++)
+        {
+            cupMngr.transform.GetChild(i).gameObject.SetActive(false);
+        }
+
+
+        if (store.GetComponent<StoreUI>().ItemsBought.Count > 0)
+        {
+            cupMngr.transform.Find(store.GetComponent<StoreUI>().ItemsBought[store.GetComponent<StoreUI>().ItemsBought.Count-1]).gameObject.SetActive(true);
+        }
+
+        store.SetActive(false);
+        goalScreen.SetActive(true);
 
         foreach(GameObject painting in paintings)
         {
@@ -87,7 +114,7 @@ public class Gallery : MonoBehaviour
 
         influence.ResetInfluence();
         GenerateGoals();
-        goalScreen.GetComponent<GoalsUI>().CreateText(goals);
+        goalScreen.GetComponent<GoalsUI>().CreateText(goals, money);
 
         upvoteButton.interactable = true;
         downvoteButton.interactable = true;
@@ -194,6 +221,7 @@ public class Gallery : MonoBehaviour
             Vector3 newXPos = new Vector3(currentIndex * 19.2f, 1.0f, -9);
             Camera.main.GetComponent<CameraMovement>().MoveTo(newXPos);
 
+
             walls[ConvertToInt(wallToMove)].transform.position = new Vector3(newXPos.x, 1.0f);
             golfMeter.transform.position = new Vector3(newXPos.x, -3.5f);
             golfMeter.GetComponent<GolfMeter>().ChangePainting(paintings[currentIndex].GetComponent<Painting>().GetNumberOfClicks());
@@ -252,6 +280,7 @@ public class Gallery : MonoBehaviour
     public int Money
     {
         get { return money; }
+        set { money = value; }
     }
 
 }

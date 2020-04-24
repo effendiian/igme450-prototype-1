@@ -38,8 +38,10 @@ public class GoalsUI : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    public void CreateText(List<Goal> goals)
+    public void CreateText(List<Goal> goals, int money)
     {
+        moneyText.text = "Bank: $" + money;
+
         this.goals = goals;
 
         foreach (var goalText in goalTexts)
