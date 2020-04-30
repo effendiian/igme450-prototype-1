@@ -25,17 +25,23 @@ public class GoalsUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            if (this.gameObject.transform.localScale.x == 0)
+                Show();
+            else
+                Hide();
+        }
     }
 
     public void Show()
     {
-        this.gameObject.SetActive(true);
+        this.gameObject.transform.localScale = new Vector3(1,1,1);
     }
 
     public void Hide()
     {
-        this.gameObject.SetActive(false);
+        this.gameObject.transform.localScale = new Vector3(0, 0, 0);
     }
 
     public void CreateText(List<Goal> goals, int money)
