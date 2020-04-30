@@ -19,6 +19,9 @@ public class Gallery : MonoBehaviour
     public Curator curatorScript;
     public GoalsUI goalsUI;
 
+    public AudioSource hmmSource;
+    public AudioSource ehhSource;
+
     public int numGoals = 4;
 
     public Text popularityText;
@@ -34,6 +37,10 @@ public class Gallery : MonoBehaviour
     public GameObject store;
 
     public GameObject cupMngr;
+
+
+    private float buttonDisabledTime = 0f;
+    private const float BUTTON_DISABLE_LENGTH = 0.5f;
 
 
     private int money = 0;
@@ -71,6 +78,16 @@ public class Gallery : MonoBehaviour
         } else if (change < 0)
         {
             popularityText.text = popularityText.text + " <color=red>" + change + "</color>";
+        }
+
+        if (buttonDisabledTime > 0)
+        {
+            buttonDisabledTime -= Time.deltaTime;
+            if (buttonDisabledTime <= 0)
+            {
+                upvoteButton.interactable = true;
+                downvoteButton.interactable = true;
+            }
         }
     }
 
@@ -126,7 +143,6 @@ public class Gallery : MonoBehaviour
 
     public void EndNight()
     {
-
         foreach (var goal in goals)
         {
             if (goal.MetGoal(paintingScripts))
@@ -186,20 +202,41 @@ public class Gallery : MonoBehaviour
 
     public void UpvoteCurrent()
     {
+        if (buttonDisabledTime > 0)
+            return;
+        else
+            DisableButtons();
+
         //float multipier = influence.ResetInfluence();
         float multiplier = 1f;
         paintingScripts[currentIndex].Upvote(multiplier, golfMeter);
+        hmmSource.Play();
 
+        influence.DecreaseInfluence();
         CheckInfluence();
     }
 
     public void DownvoteCurrent()
     {
+        if (buttonDisabledTime > 0)
+            return;
+        else
+            DisableButtons();
+
         //float multipier = influence.ResetInfluence();
         float multiplier = 1f;
         paintingScripts[currentIndex].Downvote(multiplier, golfMeter);
+        ehhSource.Play();
 
+        influence.DecreaseInfluence();
         CheckInfluence();
+    }
+
+    private void DisableButtons()
+    {
+        buttonDisabledTime = BUTTON_DISABLE_LENGTH;
+        upvoteButton.interactable = false;
+        downvoteButton.interactable = false;
     }
 
     private void CheckInfluence()

@@ -15,7 +15,6 @@ public class Painting : MonoBehaviour
     private int initialPopularity;
     private int popularity;
 
-
     // Start is called before the first frame update
     //void Start()
     //{
@@ -25,7 +24,7 @@ public class Painting : MonoBehaviour
     public void Upvote(float multiplier, GameObject golfbar)
     {
         clicks += 1;
-        int golfMulti = golfbar.GetComponent<GolfMeter>().GetBonus(clicks);
+        float golfMulti = golfbar.GetComponent<GolfMeter>().GetBonus(clicks);
         HandleClick(multiplier, 1, golfMulti);
 
         if (popularity > 100)
@@ -35,14 +34,14 @@ public class Painting : MonoBehaviour
     public void Downvote(float multiplier, GameObject golfbar)
     {
         clicks += 1;
-        int golfMulti = golfbar.GetComponent<GolfMeter>().GetBonus(clicks);
+        float golfMulti = golfbar.GetComponent<GolfMeter>().GetBonus(clicks);
         HandleClick(multiplier, -1, golfMulti);
 
         if (popularity < 0)
             popularity = 0;
     }
 
-    private void HandleClick(float multiplier, int sign, int _golfMulti)
+    private void HandleClick(float multiplier, int sign, float _golfMulti)
     {
 
         if (multiplier > 0)
