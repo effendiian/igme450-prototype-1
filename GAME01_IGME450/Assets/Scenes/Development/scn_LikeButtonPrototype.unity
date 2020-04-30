@@ -3060,6 +3060,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: golfbar
       objectReference: {fileID: 0}
+    - target: {fileID: 4000592859494855156, guid: c68afb5f7e847474194e6e2a46229b26,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 82a5e1e53a606da4abb5a3a08e4270de,
+        type: 3}
     - target: {fileID: 4000592859494855157, guid: c68afb5f7e847474194e6e2a46229b26,
         type: 3}
       propertyPath: m_LocalPosition.x
