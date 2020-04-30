@@ -72,20 +72,27 @@ public class GolfMeter : MonoBehaviour
 
     }
 
-    public int GetBonus(int count)
+    public float GetBonus(int count)
     {
         this.count = count+1;
         if (count >= 6) { count = 6; }
 
-        int multiplier = 1;
+        float multiplier = 1f;
 
-        if (lerpPercent >= 0.45f && lerpPercent <= 0.55f)
+        if (lerpPercent >= 0.4669f && lerpPercent <= 0.5330f)
         {
-            multiplier = 2;
+            multiplier = 2.5f;
         }
-        else if (lerpPercent >= 0.48f && lerpPercent <= 0.52f)
+        else if (lerpPercent >= 0.2913f && lerpPercent <= 0.7086f)
         {
-            multiplier = 4;
+            multiplier = 1f;
+        }
+        else if (lerpPercent >= 0.09504 && lerpPercent <= 0.90495f)
+        {
+            multiplier = 0.5f;
+        } else
+        {
+            multiplier = -1f;
         }
 
         HitEffects(multiplier);
@@ -94,12 +101,20 @@ public class GolfMeter : MonoBehaviour
         return multiplier;
     }
 
-    public void HitEffects(int multiplier)
+    public void HitEffects(float multiplier)
     {
         timeToActive = FREEZE_TIME;
         timeForMultiplier = MULTIPLIER_TIME;
 
-        multiplierText.text = "x" + multiplier;
+        if (multiplier > 0)
+        {
+            multiplierText.text = "x" + multiplier;
+            multiplierText.color = Color.black;
+        } else
+        {
+            multiplierText.text = "x" + (-1 * multiplier);
+            multiplierText.color = Color.red;
+        }
     }
 
     //function to handle the count change when the painting is changed
