@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GolfMeter : MonoBehaviour
 {
@@ -8,9 +9,14 @@ public class GolfMeter : MonoBehaviour
     public Vector3 leftEdge;
     public Vector3 rightEdge;
     float lerpPercent = 0.0f;
+    float timeToActive = 0;
     public int count = 1;
     public bool goingRight = true;
     public GameObject ticker;
+
+    public Text multiplierText;
+
+    public float FREEZE_TIME = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -25,9 +31,20 @@ public class GolfMeter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (timeToActive > 0)
+        {
+            timeToActive -= Time.deltaTime;
+
+            if (timeToActive <= 0)
+            {
+                multiplierText.text = "";
+            }
+            return;
+        }
+
         if (goingRight)
         {
-            lerpPercent += 0.005f * count;
+            lerpPercent += 0.005f + (0.002f * count);
 
             if (lerpPercent >= 1.0f)
             {
@@ -36,7 +53,7 @@ public class GolfMeter : MonoBehaviour
         }
         else
         {
-            lerpPercent -= 0.005f * count;
+            lerpPercent -= 0.005f + (0.002f * count);
 
             if (lerpPercent <= 0.0f)
             {
@@ -64,8 +81,17 @@ public class GolfMeter : MonoBehaviour
             multiplier = 4;
         }
 
+        HitEffects(multiplier);
+
         //Debug.Log(count);
         return multiplier;
+    }
+
+    public void HitEffects(int multiplier)
+    {
+        timeToActive = FREEZE_TIME;
+
+        multiplierText.text = "x" + multiplier;
     }
 
     //function to handle the count change when the painting is changed
