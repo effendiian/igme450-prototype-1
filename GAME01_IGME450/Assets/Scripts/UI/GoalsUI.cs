@@ -92,6 +92,6 @@ public class GoalsUI : MonoBehaviour
             }
         }
 
-        this.gameObject.SetActive(true);
+        Show();
     }
 }

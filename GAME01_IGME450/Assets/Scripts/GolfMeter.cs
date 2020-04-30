@@ -10,13 +10,15 @@ public class GolfMeter : MonoBehaviour
     public Vector3 rightEdge;
     float lerpPercent = 0.0f;
     float timeToActive = 0;
+    float timeForMultiplier = 0;
     public int count = 1;
     public bool goingRight = true;
     public GameObject ticker;
 
     public Text multiplierText;
 
-    public float FREEZE_TIME = 0.5f;
+    private const float FREEZE_TIME = 0.25f;
+    private const float MULTIPLIER_TIME = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -31,16 +33,21 @@ public class GolfMeter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timeToActive > 0)
+        if (timeForMultiplier > 0)
         {
-            timeToActive -= Time.deltaTime;
+            timeForMultiplier -= Time.deltaTime;
 
-            if (timeToActive <= 0)
+            if (timeForMultiplier <= 0)
             {
                 multiplierText.text = "";
             }
-            return;
         }
+
+        if (timeToActive > 0)
+        {
+            timeToActive -= Time.deltaTime;
+            return;
+        } 
 
         if (goingRight)
         {
@@ -90,6 +97,7 @@ public class GolfMeter : MonoBehaviour
     public void HitEffects(int multiplier)
     {
         timeToActive = FREEZE_TIME;
+        timeForMultiplier = MULTIPLIER_TIME;
 
         multiplierText.text = "x" + multiplier;
     }

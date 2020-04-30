@@ -40,7 +40,7 @@ public class Gallery : MonoBehaviour
 
 
     private float buttonDisabledTime = 0f;
-    private const int BUTTON_DISABLE_LENGTH = 1;
+    private const float BUTTON_DISABLE_LENGTH = 0.5f;
 
 
     private int money = 0;
@@ -143,7 +143,6 @@ public class Gallery : MonoBehaviour
 
     public void EndNight()
     {
-
         foreach (var goal in goals)
         {
             if (goal.MetGoal(paintingScripts))
@@ -242,11 +241,13 @@ public class Gallery : MonoBehaviour
 
     private void CheckInfluence()
     {
+        Debug.Log(influence.GetInfluence());
         if (influence.GetInfluence() <= 0)
         {
             upvoteButton.interactable = false;
             downvoteButton.interactable = false;
 
+            Debug.Log("hello");
             EndNight();
         } 
     }
