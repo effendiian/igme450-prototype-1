@@ -241,13 +241,11 @@ public class Gallery : MonoBehaviour
 
     private void CheckInfluence()
     {
-        Debug.Log(influence.GetInfluence());
         if (influence.GetInfluence() <= 0)
         {
             upvoteButton.interactable = false;
             downvoteButton.interactable = false;
 
-            Debug.Log("hello");
             EndNight();
         } 
     }

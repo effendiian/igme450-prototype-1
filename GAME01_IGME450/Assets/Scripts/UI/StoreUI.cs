@@ -16,6 +16,9 @@ public class StoreUI : MonoBehaviour
 
     private GameObject equipped;    //holds currently equipped cup
 
+    public Scrollbar scrollBar; //holds the scrollbar for the store
+    public GameObject scrollScreen; //holds the canvas that scrolls with the scrollbar
+
     // Start is called before the first frame update
     void Start()
     {
@@ -78,6 +81,10 @@ public class StoreUI : MonoBehaviour
     public void OpenStore()
     {
         goals.SetActive(false);
+
+        scrollBar.value = 0;
+        scrollScreen.transform.position = new Vector3(scrollScreen.transform.position.x, ((Screen.height) / 6.7f), 0);
+
 
         money.text = "Bank: $" + galleryScript.Money;
 
