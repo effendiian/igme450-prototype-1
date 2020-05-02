@@ -19,6 +19,9 @@ public class StoreUI : MonoBehaviour
     public Scrollbar scrollBar; //holds the scrollbar for the store
     public GameObject scrollScreen; //holds the canvas that scrolls with the scrollbar
 
+    public AudioSource buySound;
+    public AudioSource noSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -85,7 +88,6 @@ public class StoreUI : MonoBehaviour
         scrollBar.value = 0;
         scrollScreen.transform.position = new Vector3(scrollScreen.transform.position.x, ((Screen.height) / 6.7f), 0);
 
-
         money.text = "Bank: $" + galleryScript.Money;
 
         for(int i = 0; i < costs.Length; i++)
@@ -111,9 +113,11 @@ public class StoreUI : MonoBehaviour
     {
         if(galleryScript.Money < cost)
         {
+            noSound.Play();
             return false;
+            
         }
-
+        buySound.Play();
         return true;
     }
 
